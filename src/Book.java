@@ -2,7 +2,6 @@ import java.util.Calendar;
 
 public class Book extends LibraryObj{
 
-    private Author author;
     private String Genre;
     private String ISBN;
 
@@ -14,19 +13,11 @@ public class Book extends LibraryObj{
 
 
     public Book(int idLibraryObj, String title,  Author publichingHouse, Calendar birthDate, String description, Author author, String genre, String isbn) {
-        super(idLibraryObj, title, publichingHouse, birthDate,  description);
-        this.author = author;
+        super(idLibraryObj, author, title, publichingHouse, birthDate,  description);
         Genre = genre;
         ISBN = isbn;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
 
     public String getGenre() {
         return Genre;

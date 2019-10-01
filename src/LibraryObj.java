@@ -3,6 +3,7 @@ import java.util.GregorianCalendar;
 
 public class LibraryObj {
     private int idLibraryObj;
+    private Author author;
     private String title;
     private Author PublichingHouse;
     private Calendar PublichingDate;
@@ -16,8 +17,9 @@ public class LibraryObj {
     }
 
 
-    public LibraryObj(int idLibraryObj, String title, Author publichingHouse, Calendar birthDate, String description) {
+    public LibraryObj(int idLibraryObj, Author author, String title, Author publichingHouse, Calendar birthDate, String description) {
         this.idLibraryObj = idLibraryObj;
+        this.author = author;
 
         this.title = title;
         PublichingHouse = publichingHouse;
