@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -5,14 +7,14 @@ public class Journal extends LibraryObj {
 
     private int Number;
     private Author Redactor;
-    private List<article> Articles;
+    private ArrayList<article> Articles;
 
 
     public Journal() {
         super();
     }
 
-    public Journal(int idLibraryObj, String title, Author publichingHouse, Calendar birthDate, String description, int number, Author redactor, List<article> articles) {
+    public Journal(int idLibraryObj, String title, Author publichingHouse, Calendar birthDate, String description, int number, Author redactor, ArrayList<article> articles) {
         super(idLibraryObj, title, publichingHouse, birthDate,  description);
         Number = number;
         Redactor = redactor;
@@ -45,7 +47,7 @@ public class Journal extends LibraryObj {
         return Articles;
     }
 
-    public void setArticles(List<article> articles) {
+    public void setArticles(ArrayList<article> articles) {
         this.Articles = articles;
     }
 }
