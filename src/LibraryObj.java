@@ -80,4 +80,12 @@ public class LibraryObj {
     public void setIdLibraryObj(int idLibraryObj) {
         this.idLibraryObj = idLibraryObj;
     }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
 }
