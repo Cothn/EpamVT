@@ -4,29 +4,35 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class LibraryObj extends MyPerentClass {
-    private Author author;
+    private int authorId;
     private String title;
-    private PublishingHouse publishingHouse;
+    private int publishingHouseId;
     private int pagesNum;
     private String Description;
 
 
-    public LibraryObj() {
+    public LibraryObj() {}
 
 
-    }
 
-
-    public LibraryObj( Author author, String title, PublishingHouse publishingHouse, int pagesNum, String description) {
-
-        this.author = author;
+    public LibraryObj(int id, int authorId, String title, int publishingHouseId, int pagesNum, String description) {
+        super(id);
+        this.authorId = authorId;
 
         this.title = title;
-        this.publishingHouse = publishingHouse;
+        this.publishingHouseId = publishingHouseId;
         this.pagesNum = pagesNum;
         Description = description;
 }
 
+    public LibraryObj(int authorId, String title, int publishingHouseId, int pagesNum, String description) {
+        this.authorId = authorId;
+
+        this.title = title;
+        this.publishingHouseId = publishingHouseId;
+        this.pagesNum = pagesNum;
+        Description = description;
+    }
 
 
     public String getTitle() {
@@ -50,29 +56,9 @@ public class LibraryObj extends MyPerentClass {
 
 
 
-    public String getSubject() {
-        return Description;
-    }
 
-    public void setSubject(String subject) {
-        Description = subject;
-    }
 
-    public PublishingHouse getPublishingHouse() {
-        return publishingHouse;
-    }
 
-    public void setPublishingHouse(PublishingHouse publishingHouse) {
-        publishingHouse = publishingHouse;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
 
     public int getPagesNum() {
         return pagesNum;
@@ -80,5 +66,32 @@ public class LibraryObj extends MyPerentClass {
 
     public void setPagesNum(int pagesNum) {
         this.pagesNum = pagesNum;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+
+
+    public int getPublishingHouseId() {
+        return publishingHouseId;
+    }
+
+    public void setPublishingHouseId(int publishingHouseId) {
+        this.publishingHouseId = publishingHouseId;
+    }
+
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 }

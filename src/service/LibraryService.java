@@ -11,7 +11,7 @@ public interface LibraryService {
     void update(Integer id,LibraryObj LibraryObj);
     void deleteLibraryObj(LibraryObj LibraryObj);
     void deleteLibraryObjById(Integer id);
-    ArrayList<LibraryObj> sortByPageNum();
-    ArrayList<LibraryObj> sortByAuthor();
-    ArrayList<LibraryObj> findByName(String name);
+    ArrayList<LibraryObj> sortByPagesNum();
+    ArrayList<LibraryObj> sortByTitle();
+    ArrayList<LibraryObj> findByAuthor(int authorId);
 }

@@ -6,6 +6,11 @@ import java.util.Random;
 public class MyPerentClass {
     private int Id;
 
+    MyPerentClass(){}
+
+    MyPerentClass(int id){
+        Id = id;
+    }
     public int getId()
     {
         return Id;
@@ -16,7 +21,7 @@ public class MyPerentClass {
         Id = id;
     }
 
-    public static int getUniqId(ArrayList<MyPerentClass> CalssList)
+    public static int getUniqId(ArrayList<MyPerentClass> ClassList)
     {
         Random random = new Random(System.currentTimeMillis());
         boolean isUniq;
@@ -24,11 +29,16 @@ public class MyPerentClass {
         do {
             isUniq = true;
             uniqId = random.nextInt();
-            for (MyPerentClass identifier : CalssList) {
+            for (MyPerentClass identifier : ClassList) {
                 if (identifier.getId() == uniqId)
                     isUniq = false;
             }
-        }while (!isUniq);
+        }while (!isUniq || (uniqId == 0));
         return uniqId;
+    }
+
+    public String StringView() {
+
+        return String.format("id: %-20d", this.getId());
     }
 }
