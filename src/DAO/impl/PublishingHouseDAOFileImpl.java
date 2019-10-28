@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
     private ArrayList<PublishingHouse> PublishingHouseBuff = null;
+    private final String fileName = ".\\BD\\PublishingHouse.txt";
     @Override
     public ArrayList<PublishingHouse> getAll() {
         ArrayList<PublishingHouse> allPublishingHouse = getAllPublishingHouse();
@@ -29,12 +30,12 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
 
         try
         {
-            myFile = new FileReader(".\\BD\\PublishingHouse.txt");
+            myFile = new FileReader(fileName);
             buff = new BufferedReader(myFile);
             while (true)
             {
                 String line = buff.readLine();
-                if (line == null)
+                if ((line == null) || (line == ""))
                     break;
 
 
@@ -124,7 +125,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
 
     public void saveAutorsToFile(ArrayList<PublishingHouse> authors)
     {
-        try(FileWriter writer = new FileWriter(".\\BD\\Authors.txt", false))
+        try(FileWriter writer = new FileWriter(fileName, false))
         {
             for(PublishingHouse publishingHouse: authors)
             {

@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class AuthorDAOFileImpl  implements AuthorDAO {
-
+    private final String fileName = ".\\BD\\Authors.txt";
     private ArrayList<Author> AuthorsBuff = null;
     @Override
     public ArrayList<Author> getAll() {
@@ -31,7 +31,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
 
         try
         {
-            myFile = new FileReader(".\\BD\\Authors.txt");
+            myFile = new FileReader(fileName);
             buff = new BufferedReader(myFile);
             while (true)
             {
@@ -125,7 +125,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
 
     public void saveAutorsToFile(ArrayList<Author> authors)
     {
-        try(FileWriter writer = new FileWriter(".\\BD\\Authors.txt", false))
+        try(FileWriter writer = new FileWriter(fileName, false))
         {
             for(Author author: authors)
             {

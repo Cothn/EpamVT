@@ -1,11 +1,11 @@
 package service.impl;
 
 import DAO.DAOFactory;
-import DAO.LibraryDAO;
 import beans.LibraryObj;
 import service.LibraryService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class LibraryServiceImpl implements LibraryService {
@@ -26,28 +26,28 @@ public class LibraryServiceImpl implements LibraryService {
     public void update(Integer id, LibraryObj LibraryObj) {
         DAOFactory.getLibraryDAO().update(id,LibraryObj);
     }
-    @Override
-    public void deleteLibraryObj(LibraryObj LibraryObj) {
 
-        DAOFactory.getLibraryDAO().delete(LibraryObj);
-    }
     @Override
     public void deleteLibraryObjById(Integer id) {
 
         DAOFactory.getLibraryDAO().deleteById(id);
     }
-    @Override
+    /*@Override
     public ArrayList<LibraryObj> sortByPagesNum()
     {
         ArrayList<LibraryObj> libraryObj =  DAOFactory.getLibraryDAO().getAll();
         libraryObj.sort(new LibraryObjPageComparator());
         return libraryObj;
-    }
+    }*/
     @Override
-    public ArrayList<LibraryObj> sortByTitle()
+    public ArrayList<LibraryObj> sortByTitle(boolean ascending)
     {
         ArrayList<LibraryObj> allLibraryObj =  DAOFactory.getLibraryDAO().getAll();
         allLibraryObj.sort(new LibraryObjTitleComparator());
+        if (!ascending)
+        {
+            Collections.reverse(allLibraryObj);
+        }
         return allLibraryObj;
     }
 
@@ -56,16 +56,30 @@ public class LibraryServiceImpl implements LibraryService {
 
         ArrayList<LibraryObj> allLibraryObj =  DAOFactory.getLibraryDAO().getAll();
         ArrayList<LibraryObj> findLibraryObj = new ArrayList<>();
-        for (LibraryObj LibraryObj:allLibraryObj)
+        for (LibraryObj libraryObj:allLibraryObj)
         {
-            if(LibraryObj.getAuthorId() == authorId)
-                findLibraryObj.add(LibraryObj);
+            if(libraryObj.getAuthorId() == authorId)
+                findLibraryObj.add(libraryObj);
         }
 
         return findLibraryObj;
     }
 
-    class LibraryObjPageComparator implements Comparator<LibraryObj> {
+    @Override
+    public ArrayList<LibraryObj> findByPublishingHouse(int publishingHouseId) {
+
+        ArrayList<LibraryObj> allLibraryObj =  DAOFactory.getLibraryDAO().getAll();
+        ArrayList<LibraryObj> findLibraryObj = new ArrayList<>();
+        for (LibraryObj libraryObj:allLibraryObj)
+        {
+            if(libraryObj.getPublishingHouseId() == publishingHouseId)
+                findLibraryObj.add(libraryObj);
+        }
+
+        return findLibraryObj;
+    }
+
+    /*class LibraryObjPageComparator implements Comparator<LibraryObj> {
 
         public int compare(LibraryObj f, LibraryObj t){
 
@@ -77,7 +91,7 @@ public class LibraryServiceImpl implements LibraryService {
                 return 0;
         }
     }
-
+*/
     class LibraryObjTitleComparator implements Comparator<LibraryObj>{
 
         public int compare(LibraryObj f, LibraryObj t){

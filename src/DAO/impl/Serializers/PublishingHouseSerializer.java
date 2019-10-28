@@ -9,7 +9,7 @@ public class PublishingHouseSerializer {
     public static PublishingHouse ParsePublishingHouse(String publishingHouseAsString) {
         String[] publishingHouseInfo = publishingHouseAsString.split(separator);
 
-        if(publishingHouseInfo.length != 6)
+        if(publishingHouseInfo.length != 7)
             return null;
 
         PublishingHouse result = null;

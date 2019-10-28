@@ -1,7 +1,5 @@
 package beans;
 
-import java.util.Calendar;
-
 public class Article extends LibraryObj {
 
     private String Topic;

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class LibraryDAOFileImpl implements LibraryDAO {
 
     private ArrayList<LibraryObj> LibraryObjBuff = null;
-
+    private String fileName = ".\\BD\\Library.txt";
     @Override
     public ArrayList<LibraryObj> getAll() {
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
@@ -37,13 +37,13 @@ public class LibraryDAOFileImpl implements LibraryDAO {
 
         try
         {
-            myFile = new FileReader(".\\BD\\Library.txt");
+            myFile = new FileReader(fileName);
             buff = new BufferedReader(myFile);
 
             while (true)
             {
                 String line = buff.readLine();
-                if (line == null)
+                if ((line == null) || (line == ""))
                     break;
 
                 LibrarySerializerFactory librarySerializerFactory = new LibrarySerializerFactory();
@@ -149,7 +149,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
 
     public void saveLibraryToFile(ArrayList<LibraryObj> libraryObjs)
     {
-        try(FileWriter writer = new FileWriter(".\\BD\\Library.txt", false))
+        try(FileWriter writer = new FileWriter(fileName, false))
         {
             for(LibraryObj libraryObj: libraryObjs)
             {

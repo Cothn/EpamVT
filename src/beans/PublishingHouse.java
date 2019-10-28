@@ -21,7 +21,14 @@ public class PublishingHouse extends MyPerentClass{
         this.title = title;
         Description = description;
     }
+    public PublishingHouse( String title, String address, String phone, String FoundationDate, String description) {
+        this.address = address;
+        this.phone = phone;
 
+        this.FoundationDate = FoundationDate;
+        this.title = title;
+        Description = description;
+    }
     public String getTitle() {
         return title;
     }

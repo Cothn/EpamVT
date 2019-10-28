@@ -1,7 +1,5 @@
-import Interface.impl.console.MainInterface;
-import beans.*;
+import Interface.impl.console.MainInterfaceImpl;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Aplication {
@@ -9,8 +7,8 @@ public class Aplication {
 
     public static void main(String[] args) {
 
-        MainInterface mainInterface = new MainInterface();
-        mainInterface.Show();
+        MainInterfaceImpl mainInterfaceImpl = new MainInterfaceImpl();
+        mainInterfaceImpl.Show();
         System.out.println("End");
        /* in = new Scanner(System.in);//start read
 

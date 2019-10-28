@@ -1,12 +1,13 @@
 package Interface.impl.console;
 
 import Interface.LibraryObjEditInterface;
-import beans.Article;
+import beans.Comics;
 import beans.LibraryObj;
 
 import java.util.Scanner;
 
-public class ArticleEditInterface implements LibraryObjEditInterface {
+public class ComicsEditInterfaceImpl implements LibraryObjEditInterface {
+
     @Override
     public LibraryObj ShowEditInterface() {
         Scanner scanner = new Scanner(System.in);
@@ -23,10 +24,10 @@ public class ArticleEditInterface implements LibraryObjEditInterface {
         scanner.nextLine();
         System.out.println("Enter description:");
         String description = scanner.nextLine();
-        System.out.println("Enter topic:");
-        String Topic = scanner.nextLine();
-        System.out.println("Enter subject:");
-        String Subject = scanner.nextLine();
-        return new Article(authorId, title, publishingHouseId, pagesNum,  description, Topic, Subject);
+        System.out.println("Enter drawing:");
+        String drawing = scanner.nextLine();
+        System.out.println("Enter universe:");
+        String universe = scanner.nextLine();
+        return new Comics(authorId, title, publishingHouseId, pagesNum,  description, drawing, universe);
     }
 }

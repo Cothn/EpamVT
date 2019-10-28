@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class EmployerDAOFileImpl implements EmployerDAO {
     private ArrayList<Employer> LibraryObjBuff = null;
+    private final String fileName = ".\\BD\\Employers.txt";
 
     public ArrayList<Employer> getAll() {
         ArrayList<Employer> allEmployer = getAllEmployer();
@@ -31,13 +32,13 @@ public class EmployerDAOFileImpl implements EmployerDAO {
 
         try
         {
-            myFile = new FileReader(".\\BD\\Employers.txt");
+            myFile = new FileReader(fileName);
             buff = new BufferedReader(myFile);
 
             while (true)
             {
                 String line = buff.readLine();
-                if (line == null)
+                if ((line == null) || (line == ""))
                     break;
 
 
@@ -132,7 +133,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
 
     public void saveLibraryToFile(ArrayList<Employer> libraryObjs)
     {
-        try(FileWriter writer = new FileWriter(".\\BD\\Library.txt", false))
+        try(FileWriter writer = new FileWriter(fileName, false))
         {
             for(Employer libraryObj: libraryObjs)
             {

@@ -6,7 +6,7 @@ import beans.LibraryObj;
 
 import java.util.Scanner;
 
-public class BookEditInterface implements LibraryObjEditInterface {
+public class BookEditInterfaceImpl implements LibraryObjEditInterface {
     @Override
     public LibraryObj ShowEditInterface() {
         Scanner scanner = new Scanner(System.in);
