@@ -5,14 +5,9 @@ public class Book extends LibraryObj{
     private String Genre;
     private String ISBN;
 
-
-
     public Book() {
         super();
     }
-
-
-
 
     public Book(int id, int authorId, String title, int publishingHouseId, int pagesNum, String description,  String genre, String isbn) {
         super( id, authorId, title, publishingHouseId, pagesNum,  description);
@@ -26,28 +21,19 @@ public class Book extends LibraryObj{
         ISBN = isbn;
     }
 
-
     public String getGenre() {
         return Genre;
-    }
-
-    public void setGenre(String genre) {
-        Genre = genre;
     }
 
     public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
-
     @Override
     public String StringView() {
 
         String result;
-        result = String.format("book   | id: %-13d| ",this.getId());
+        result = String.format("book   | id: %-10d| ",this.getId());
         if (this.getAuthorId() != 0){
             result += String.format(" AuthorId: %-14d| ", this.getAuthorId());
         }
@@ -63,8 +49,7 @@ public class Book extends LibraryObj{
         {
             result += " PublishingHouseId: publishing house unknown| ";
         }
-        result += String.format(" Numbers of page: %-5d|  genre: %-20s| ISBN: %-16s|  description: %-40s|", this.getPagesNum(), Genre, ISBN, this.getDescription());
-
+        result += String.format(" Numbers of page: %-6d | genre: %-20s| ISBN: %-19s|  description: %-40s|", this.getPagesNum(), Genre, ISBN, this.getDescription());
         return result;
     }
 }

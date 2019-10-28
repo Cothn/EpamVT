@@ -92,7 +92,7 @@ public class LibraryServiceImpl implements LibraryService {
         }
     }
 */
-    class LibraryObjTitleComparator implements Comparator<LibraryObj>{
+    static class LibraryObjTitleComparator implements Comparator<LibraryObj>{
 
         public int compare(LibraryObj f, LibraryObj t){
 

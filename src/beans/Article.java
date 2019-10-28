@@ -6,7 +6,6 @@ public class Article extends LibraryObj {
     private String Subject;
 
     public Article() {
-
     }
 
     public Article(int id, int authorId, String title, int publishingHouseId, int pagesNum, String description,  String topic, String subject) {
@@ -21,28 +20,19 @@ public class Article extends LibraryObj {
         Subject = subject;
     }
 
-
     public String getTopic() {
         return Topic;
-    }
-
-    public void setTopic(String topic) {
-        Topic = topic;
     }
 
     public String getSubject() {
         return Subject;
     }
 
-    public void setSubject(String subject) {
-        Subject = subject;
-    }
-
     @Override
     public String StringView() {
 
         String result;
-        result = String.format("Article| id: %-13d| ",this.getId());
+        result = String.format("Article| id: %-10d| ",this.getId());
         if (this.getAuthorId() != 0){
             result += String.format(" AuthorId: %-14d| ", this.getAuthorId());
         }
@@ -58,8 +48,7 @@ public class Article extends LibraryObj {
         {
             result += " PublishingHouseId: publishing house unknown| ";
         }
-        result += String.format(" Numbers of page: %-5d|  Topic: %-20s| Subject: %-13s|  description: %-40s|", this.getPagesNum(), Topic, Subject, this.getDescription());
-
+        result += String.format(" Numbers of page: %-6d | Topic: %-20s| Subject: %-16s|  description: %-40s|", this.getPagesNum(), Topic, Subject, this.getDescription());
         return result;
     }
 }

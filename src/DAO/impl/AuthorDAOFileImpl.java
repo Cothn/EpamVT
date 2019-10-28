@@ -11,8 +11,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Const.GlobalConstant.SourceFilePath;
+
 public class AuthorDAOFileImpl  implements AuthorDAO {
-    private final String fileName = ".\\BD\\Authors.txt";
+    private final String fileName = SourceFilePath +"\\Authors.txt";
     private ArrayList<Author> AuthorsBuff = null;
     @Override
     public ArrayList<Author> getAll() {
@@ -24,8 +26,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
         if(AuthorsBuff != null)
             return AuthorsBuff;
 
-        ArrayList<Author> allAuthors = new ArrayList<Author>();
-
+        ArrayList<Author> allAuthors = new ArrayList<>();
         BufferedReader buff = null;
         FileReader myFile = null;
 
@@ -36,12 +37,10 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
             while (true)
             {
                 String line = buff.readLine();
-                if (line == null)
+                if (line == null || line.equals(""))
                     break;
 
-
                 allAuthors.add(AuthorSerializer.ParseAuthors(line));
-
             }
         }
         catch (IOException e)
@@ -86,7 +85,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
                 saveAutorsToFile(AllAuthors);
                 return i;
             }
-        };
+        }
         return 0;
     }
 
@@ -101,7 +100,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
                 saveAutorsToFile(AllAuthors);
                 return true;
             }
-        };
+        }
         return false;
     }
 
@@ -115,7 +114,6 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
 
     @Override
     public boolean create(Author newAuthor) {
-
         ArrayList<Author> AllAuthors = getAllAuthors();
         newAuthor.setId(MyPerentClass.getUniqId(new ArrayList<>(AllAuthors)));
         AllAuthors.add(newAuthor);
@@ -123,7 +121,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
         return true;
     }
 
-    public void saveAutorsToFile(ArrayList<Author> authors)
+    private void saveAutorsToFile(ArrayList<Author> authors)
     {
         try(FileWriter writer = new FileWriter(fileName, false))
         {
@@ -135,7 +133,6 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
             writer.flush();
         }
         catch(IOException ex){
-
             System.out.println(ex.getMessage());
         }
     }

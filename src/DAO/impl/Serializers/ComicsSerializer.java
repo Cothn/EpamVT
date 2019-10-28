@@ -13,10 +13,9 @@ public class ComicsSerializer implements LibrarySerializer{
         if(comicsInfo.length != 9)
             return null;
 
-        LibraryObj result = null;
+        LibraryObj result;
         //Comics    Id#Author#title#publishngHouse#PageCount#description#  drawing#universe
         result = new Comics(Integer.parseInt(comicsInfo[1]), Integer.parseInt(comicsInfo[2]), comicsInfo[3], Integer.parseInt(comicsInfo[4]), Integer.parseInt(comicsInfo[5]),comicsInfo[6], comicsInfo[7], comicsInfo[8]);
-
         return result;
     }
 
@@ -26,8 +25,7 @@ public class ComicsSerializer implements LibrarySerializer{
             return null;
 
         Comics comics = (Comics)libraryObj;
-
-        String result = null;
+        String result;
         result = "Comics" + separator + comics.getId() + separator + comics.getAuthorId() + separator + comics.getTitle() + separator + comics.getPublishingHouseId() + separator;
         result += comics.getPagesNum() + separator + comics.getDescription() + separator + comics.getDrawing() + separator + comics.getUniverse();
         return result;

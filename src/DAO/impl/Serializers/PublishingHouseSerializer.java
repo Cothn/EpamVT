@@ -12,16 +12,14 @@ public class PublishingHouseSerializer {
         if(publishingHouseInfo.length != 7)
             return null;
 
-        PublishingHouse result = null;
-
+        PublishingHouse result;
         result = new PublishingHouse(Integer.parseInt(publishingHouseInfo[1]),  publishingHouseInfo[2], publishingHouseInfo[3], publishingHouseInfo[4], publishingHouseInfo[5], publishingHouseInfo[6]);
-
         return result;
     }
 
     public static String FormatPublishingHouse(PublishingHouse publishingHouse) {
 
-        String result = null;
+        String result;
         result = "PublishingHouse" + separator + publishingHouse.getId() + separator + publishingHouse.getTitle() + separator + publishingHouse.getAddress() + separator;
         result += publishingHouse.getPhone() + separator + publishingHouse.getFoundationDate()+ separator + publishingHouse.getDescription();
         return result;

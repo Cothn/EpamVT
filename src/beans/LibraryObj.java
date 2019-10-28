@@ -10,15 +10,11 @@ public class LibraryObj extends MyPerentClass {
     private int pagesNum;
     private String Description;
 
-
     public LibraryObj() {}
-
-
 
     public LibraryObj(int id, int authorId, String title, int publishingHouseId, int pagesNum, String description) {
         super(id);
         this.authorId = authorId;
-
         this.title = title;
         this.publishingHouseId = publishingHouseId;
         this.pagesNum = pagesNum;
@@ -27,45 +23,22 @@ public class LibraryObj extends MyPerentClass {
 
     public LibraryObj(int authorId, String title, int publishingHouseId, int pagesNum, String description) {
         this.authorId = authorId;
-
         this.title = title;
         this.publishingHouseId = publishingHouseId;
         this.pagesNum = pagesNum;
         Description = description;
     }
 
-
     public String getTitle() {
-
         return title;
-
     }
-
-
 
     public void setTitle(String title) {
-
         this.title = title;
-
     }
-
-
-
-
-
-
-
-
-
-
-
 
     public int getPagesNum() {
         return pagesNum;
-    }
-
-    public void setPagesNum(int pagesNum) {
-        this.pagesNum = pagesNum;
     }
 
     public String getDescription() {
@@ -76,8 +49,6 @@ public class LibraryObj extends MyPerentClass {
         Description = description;
     }
 
-
-
     public int getPublishingHouseId() {
         return publishingHouseId;
     }
@@ -85,7 +56,6 @@ public class LibraryObj extends MyPerentClass {
     public void setPublishingHouseId(int publishingHouseId) {
         this.publishingHouseId = publishingHouseId;
     }
-
 
     public int getAuthorId() {
         return authorId;

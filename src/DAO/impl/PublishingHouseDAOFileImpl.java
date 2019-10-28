@@ -11,20 +11,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Const.GlobalConstant.SourceFilePath;
+
 public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
     private ArrayList<PublishingHouse> PublishingHouseBuff = null;
-    private final String fileName = ".\\BD\\PublishingHouse.txt";
+    private final String fileName = SourceFilePath +"\\PublishingHouse.txt";
+
     @Override
     public ArrayList<PublishingHouse> getAll() {
         ArrayList<PublishingHouse> allPublishingHouse = getAllPublishingHouse();
         return (ArrayList<PublishingHouse>) allPublishingHouse.clone();
     }
+
     private ArrayList<PublishingHouse> getAllPublishingHouse() {
         if(PublishingHouseBuff != null)
             return PublishingHouseBuff;
 
-        ArrayList<PublishingHouse> allPublishingHouse = new ArrayList<PublishingHouse>();
-
+        ArrayList<PublishingHouse> allPublishingHouse = new ArrayList<>();
         BufferedReader buff = null;
         FileReader myFile = null;
 
@@ -35,9 +38,8 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
             while (true)
             {
                 String line = buff.readLine();
-                if ((line == null) || (line == ""))
+                if ((line == null) || (line.equals("")))
                     break;
-
 
                 allPublishingHouse.add(PublishingHouseSerializer.ParsePublishingHouse(line));
                 //System.out.println(line);
@@ -83,10 +85,10 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
             if(AllPublishingHouse.get(i).getId() == id)
             {
                 AllPublishingHouse.set(i,publishingHouse);
-                saveAutorsToFile(AllPublishingHouse);
+                savePublishingHouseToFile(AllPublishingHouse);
                 return i;
             }
-        };
+        }
         return 0;
     }
 
@@ -98,10 +100,10 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
             if(AllPublishingHouse.get(i).getId() == id)
             {
                 AllPublishingHouse.remove(i);
-                saveAutorsToFile(AllPublishingHouse);
+                savePublishingHouseToFile(AllPublishingHouse);
                 return true;
             }
-        };
+        }
         return false;
     }
 
@@ -109,25 +111,24 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
     public boolean delete(PublishingHouse publishingHouse) {
         ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
         AllPublishingHouse .remove(publishingHouse);
-        saveAutorsToFile(AllPublishingHouse);
+        savePublishingHouseToFile(AllPublishingHouse);
         return true;
     }
 
     @Override
     public boolean create(PublishingHouse newAuthor) {
-
         ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
         newAuthor.setId(MyPerentClass.getUniqId(new ArrayList<>(AllPublishingHouse)));
         AllPublishingHouse.add(newAuthor);
-        saveAutorsToFile(AllPublishingHouse);
+        savePublishingHouseToFile(AllPublishingHouse);
         return true;
     }
 
-    public void saveAutorsToFile(ArrayList<PublishingHouse> authors)
+    private void savePublishingHouseToFile(ArrayList<PublishingHouse> publishingHouses)
     {
         try(FileWriter writer = new FileWriter(fileName, false))
         {
-            for(PublishingHouse publishingHouse: authors)
+            for(PublishingHouse publishingHouse: publishingHouses)
             {
                 writer.write(PublishingHouseSerializer.FormatPublishingHouse(publishingHouse));
                 writer.append('\n');
@@ -135,7 +136,6 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
             writer.flush();
         }
         catch(IOException ex){
-
             System.out.println(ex.getMessage());
         }
     }

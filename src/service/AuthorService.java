@@ -8,11 +8,9 @@ public interface AuthorService {
     Author getAuthor(Integer id);
     void addAuthor(Author author) ;
     ArrayList<Author> getAllAuthor() ;
-     void update(Integer id, Author author) ;
-    public void deleteAuthorById(Integer id);
-    public ArrayList<Author> sortByName(boolean ascending);
-    public ArrayList<Author> findByName(String name);
-
-
+    void update(Integer id, Author author) ;
+    void deleteAuthorById(Integer id);
+    ArrayList<Author> sortByName(boolean ascending);
+    ArrayList<Author> findByName(String name);
 
 }

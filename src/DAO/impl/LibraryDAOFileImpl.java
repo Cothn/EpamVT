@@ -13,25 +13,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Const.GlobalConstant.SourceFilePath;
+
 /*Book    (Genre, ISBN)    (Name, PageCount, Author, Id)
   Article (Topic, Subject) (Name, PageCount, Author, Id)
 */
 public class LibraryDAOFileImpl implements LibraryDAO {
 
     private ArrayList<LibraryObj> LibraryObjBuff = null;
-    private String fileName = ".\\BD\\Library.txt";
+    private String fileName = SourceFilePath +"\\Library.txt";
     @Override
     public ArrayList<LibraryObj> getAll() {
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
         return (ArrayList<LibraryObj>) allLibraryObj.clone();
     }
+
     private ArrayList<LibraryObj> getAllLibraryObj() {
         boolean needUpdate = false;
         if(LibraryObjBuff != null)
             return LibraryObjBuff;
 
-        ArrayList<LibraryObj> allLibraryObj = new ArrayList<LibraryObj>();
-
+        ArrayList<LibraryObj> allLibraryObj = new ArrayList<>();
         BufferedReader buff = null;
         FileReader myFile = null;
 
@@ -43,7 +45,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
             while (true)
             {
                 String line = buff.readLine();
-                if ((line == null) || (line == ""))
+                if ((line == null) || (line.equals("")))
                     break;
 
                 LibrarySerializerFactory librarySerializerFactory = new LibrarySerializerFactory();
@@ -110,7 +112,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
                 saveLibraryToFile(allLibraryObj);
                 return i;
             }
-        };
+        }
         return 0;
     }
 
@@ -125,7 +127,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
                 saveLibraryToFile(allLibraryObj);
                 return true;
             }
-        };
+        }
         return false;
     }
 
@@ -139,7 +141,6 @@ public class LibraryDAOFileImpl implements LibraryDAO {
 
     @Override
     public boolean create(LibraryObj newLibraryObj) {
-
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
         newLibraryObj.setId(MyPerentClass.getUniqId(new ArrayList<>(allLibraryObj)));
         allLibraryObj.add(newLibraryObj);
@@ -147,7 +148,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
         return true;
     }
 
-    public void saveLibraryToFile(ArrayList<LibraryObj> libraryObjs)
+    private void saveLibraryToFile(ArrayList<LibraryObj> libraryObjs)
     {
         try(FileWriter writer = new FileWriter(fileName, false))
         {
@@ -160,7 +161,6 @@ public class LibraryDAOFileImpl implements LibraryDAO {
             writer.flush();
         }
         catch(IOException ex){
-
             System.out.println(ex.getMessage());
         }
     }

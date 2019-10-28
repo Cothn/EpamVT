@@ -2,7 +2,6 @@ package beans;
 
 
 public class Comics extends  LibraryObj{
-
     private String drawing;
     private String universe;
 
@@ -10,9 +9,6 @@ public class Comics extends  LibraryObj{
     public Comics() {
         super();
     }
-
-
-
 
     public Comics(int id, int authorId, String title, int publishingHouseId, int pagesNum, String description,  String drawing, String universe) {
         super( id, authorId, title, publishingHouseId, pagesNum,  description);
@@ -27,14 +23,11 @@ public class Comics extends  LibraryObj{
         this.universe = universe;
     }
 
-
-
-
     @Override
     public String StringView() {
 
         String result;
-        result = String.format("Comics | id: %-13d| ",this.getId());
+        result = String.format("Comics | id: %-10d| ",this.getId());
         if (this.getAuthorId() != 0){
             result += String.format(" AuthorId: %-14d| ", this.getAuthorId());
         }
@@ -50,8 +43,7 @@ public class Comics extends  LibraryObj{
         {
             result += " PublishingHouseId: publishing house unknown| ";
         }
-        result += String.format(" Numbers of page: %-5d|  drawing: %-18s| universe: %-12s|  description: %-40s|", this.getPagesNum(), drawing, universe, this.getDescription());
-
+        result += String.format(" Numbers of page: %-6d | drawing: %-18s| universe: %-15s|  description: %-40s|", this.getPagesNum(), drawing, universe, this.getDescription());
         return result;
     }
 
@@ -59,15 +51,8 @@ public class Comics extends  LibraryObj{
         return drawing;
     }
 
-    public void setDrawing(String drawing) {
-        this.drawing = drawing;
-    }
-
     public String getUniverse() {
         return universe;
     }
 
-    public void setUniverse(String universe) {
-        this.universe = universe;
-    }
 }

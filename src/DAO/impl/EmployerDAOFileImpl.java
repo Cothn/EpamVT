@@ -1,6 +1,5 @@
 package DAO.impl;
 
-import DAO.DAOFactory;
 import DAO.EmployerDAO;
 import DAO.impl.Serializers.EmployerSerializer;
 import beans.Employer;
@@ -12,21 +11,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Const.GlobalConstant.SourceFilePath;
+
 public class EmployerDAOFileImpl implements EmployerDAO {
-    private ArrayList<Employer> LibraryObjBuff = null;
-    private final String fileName = ".\\BD\\Employers.txt";
+    private ArrayList<Employer> employersBuff = null;
+    private final String fileName = SourceFilePath +"\\Employers.txt";
 
     public ArrayList<Employer> getAll() {
         ArrayList<Employer> allEmployer = getAllEmployer();
         return (ArrayList<Employer>) allEmployer.clone();
     }
+
     private ArrayList<Employer> getAllEmployer() {
         boolean needUpdate = false;
-        if(LibraryObjBuff != null)
-            return LibraryObjBuff;
+        if(employersBuff != null)
+            return employersBuff;
 
-        ArrayList<Employer> allEmployer = new ArrayList<Employer>();
-
+        ArrayList<Employer> allEmployer = new ArrayList<>();
         BufferedReader buff = null;
         FileReader myFile = null;
 
@@ -38,14 +39,12 @@ public class EmployerDAOFileImpl implements EmployerDAO {
             while (true)
             {
                 String line = buff.readLine();
-                if ((line == null) || (line == ""))
+                if ((line == null) || (line.equals("")))
                     break;
-
 
                 allEmployer.add(EmployerSerializer.ParseEmployer(line));
                 //System.out.println(line);
             }
-
         }
         catch (IOException e)
         {
@@ -64,11 +63,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
             }
         }
 
-        LibraryObjBuff = allEmployer;
-        if (needUpdate)
-        {
-            saveLibraryToFile(LibraryObjBuff);
-        }
+        employersBuff = allEmployer;
         return allEmployer;
     }
 
@@ -83,7 +78,6 @@ public class EmployerDAOFileImpl implements EmployerDAO {
         return null;
     }
 
-
     public int update(Integer id, Employer libraryObj) {
         ArrayList<Employer> allEmployer = getAllEmployer();
         for(int i = 0; i < allEmployer.size();i++)
@@ -94,10 +88,9 @@ public class EmployerDAOFileImpl implements EmployerDAO {
                 saveLibraryToFile(allEmployer);
                 return i;
             }
-        };
+        }
         return 0;
     }
-
 
     public boolean deleteById(Integer id) {
         ArrayList<Employer> allEmployer = getAllEmployer();
@@ -109,10 +102,9 @@ public class EmployerDAOFileImpl implements EmployerDAO {
                 saveLibraryToFile(allEmployer);
                 return true;
             }
-        };
+        }
         return false;
     }
-
 
     public boolean delete(Employer libraryObj) {
         ArrayList<Employer> allEmployer = getAllEmployer();
@@ -120,7 +112,6 @@ public class EmployerDAOFileImpl implements EmployerDAO {
         saveLibraryToFile(allEmployer);
         return true;
     }
-
 
     public boolean create(Employer newLibraryObj) {
 
@@ -131,20 +122,18 @@ public class EmployerDAOFileImpl implements EmployerDAO {
         return true;
     }
 
-    public void saveLibraryToFile(ArrayList<Employer> libraryObjs)
+    private void saveLibraryToFile(ArrayList<Employer> employers)
     {
         try(FileWriter writer = new FileWriter(fileName, false))
         {
-            for(Employer libraryObj: libraryObjs)
+            for(Employer employer: employers)
             {
-
-                writer.write(EmployerSerializer.FormatEmployer(libraryObj));
+                writer.write(EmployerSerializer.FormatEmployer(employer));
                 writer.append('\n');
             }
             writer.flush();
         }
         catch(IOException ex){
-
             System.out.println(ex.getMessage());
         }
     }

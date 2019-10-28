@@ -12,13 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LibraryObjEditFactory {
-    static Map<String, LibraryObjEditInterface> map = new HashMap<String, LibraryObjEditInterface>(){};
+    static private Map<String, LibraryObjEditInterface> map = new HashMap<String, LibraryObjEditInterface>(){};
     static {
         map.put(Book.class.getSimpleName(), new BookEditInterfaceImpl());
         map.put(Article.class.getSimpleName(), new ArticleEditInterfaceImpl());
         map.put(Comics.class.getSimpleName(), new ComicsEditInterfaceImpl());
     }
-
 
     public static LibraryObjEditInterface GetEditInterface(String LibraryObjType)
     {

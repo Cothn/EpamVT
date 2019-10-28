@@ -27,10 +27,12 @@ public class EmployerServiceImpl implements EmployerService {
         DAOFactory.getEmployerDAO().update(id,employer);
     }
 
+    /*
     public void deleteEmployer(Employer employer) {
 
         DAOFactory.getEmployerDAO().delete(employer);
     }
+    */
 
     public void deleteEmployerById(Integer id) {
 
@@ -39,13 +41,13 @@ public class EmployerServiceImpl implements EmployerService {
 
     public ArrayList<Employer> sortByName(boolean ascending)
     {
-        ArrayList<Employer> libraryObj =  DAOFactory.getEmployerDAO().getAll();
-        libraryObj.sort(new EmployerNameComparator());
+        ArrayList<Employer> Objs =  DAOFactory.getEmployerDAO().getAll();
+        Objs.sort(new EmployerNameComparator());
         if (!ascending)
         {
-            Collections.reverse(libraryObj);
+            Collections.reverse(Objs);
         }
-        return libraryObj;
+        return Objs;
     }
 
 
@@ -62,7 +64,7 @@ public class EmployerServiceImpl implements EmployerService {
         return findEmployer;
     }
 
-    class EmployerNameComparator implements Comparator<Employer> {
+    static class EmployerNameComparator implements Comparator<Employer> {
 
         public int compare(Employer f, Employer t){
             int result =  f.getName().compareTo(t.getName());

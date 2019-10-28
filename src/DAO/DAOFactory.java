@@ -15,16 +15,12 @@ public class DAOFactory {
     {
         return libraryDAO;
     }
-
-
     public static AuthorDAO getAuthorDAO() {
         return authorDAO;
     }
-
     public static PublishingHouseDAO getPublishingHouseDAO () {
         return publishingHouseDAO ;
     }
-
     public static EmployerDAO getEmployerDAO() {
         return employerDAO;
     }

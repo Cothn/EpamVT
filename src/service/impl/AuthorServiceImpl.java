@@ -36,16 +36,15 @@ public class AuthorServiceImpl implements AuthorService {
     public ArrayList<Author> sortByName(boolean ascending)
     {
 
-        ArrayList<Author> libraryObj =  DAOFactory.getAuthorDAO().getAll();
-        libraryObj.sort(new AuthorNameComparator());
+        ArrayList<Author> Objs =  DAOFactory.getAuthorDAO().getAll();
+        Objs.sort(new AuthorNameComparator());
 
         if (!ascending)
         {
-            Collections.reverse(libraryObj);
+            Collections.reverse(Objs);
         }
-        return libraryObj;
+        return Objs;
     }
-
 
     public ArrayList<Author> findByName(String name) {
 
@@ -60,7 +59,7 @@ public class AuthorServiceImpl implements AuthorService {
         return findAuthor;
     }
 
-    class AuthorNameComparator implements Comparator<Author> {
+    static class  AuthorNameComparator implements Comparator<Author> {
 
         public int compare(Author f, Author t){
             int result =  f.getName().compareTo(t.getName());

@@ -7,11 +7,10 @@ import service.ServiceFactory;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainInterfaceImpl {
+public class GlobalInterfaceImpl {
     public void Show() {
         boolean FExit = false;
         Scanner scanner = new Scanner(System.in);
-
 
         while (!FExit) {
             System.out.println("What are you want?");
@@ -69,7 +68,6 @@ public class MainInterfaceImpl {
             obj = ServiceFactory.getAuthorService().getAuthor(objectId);
             if(obj == null )
             {
-
                 obj = ServiceFactory.getPublishingHouseService().getPublishingHouse(objectId);
                 if(obj == null )
                 {

@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class PublishingHouseServiceImpl  implements PublishingHouseService {
+
     public PublishingHouse getPublishingHouse(Integer id) {
         return DAOFactory.getPublishingHouseDAO().getById(id);
     }
@@ -26,10 +27,12 @@ public class PublishingHouseServiceImpl  implements PublishingHouseService {
         DAOFactory.getPublishingHouseDAO().update(id,publishingHouse);
     }
 
+/*
     public void deletePublishingHouse(PublishingHouse publishingHouse) {
 
         DAOFactory.getPublishingHouseDAO().delete(publishingHouse);
     }
+*/
 
     public void deletePublishingHouseById(Integer id) {
 
@@ -47,7 +50,6 @@ public class PublishingHouseServiceImpl  implements PublishingHouseService {
         return libraryObj;
     }
 
-
     public ArrayList<PublishingHouse> findByTitle(String title) {
 
         ArrayList<PublishingHouse> allPublishingHouse =  DAOFactory.getPublishingHouseDAO().getAll();
@@ -61,12 +63,10 @@ public class PublishingHouseServiceImpl  implements PublishingHouseService {
         return findPublishingHouse;
     }
 
-
-    class PublishingHouseTitleComparator implements Comparator<PublishingHouse> {
+    static class PublishingHouseTitleComparator implements Comparator<PublishingHouse> {
 
         public int compare(PublishingHouse f, PublishingHouse t){
-            int result =  f.getTitle().compareTo(t.getTitle());
-            return result;
+            return   f.getTitle().compareTo(t.getTitle());
         }
     }
 

@@ -13,7 +13,7 @@ public class ArticleSerializer implements LibrarySerializer {
         if(articleInfo.length != 9)
             return null;
 
-        LibraryObj result = null;
+        LibraryObj result;
         //Article     Id#Author#title#publishngHouse#PageCount#description#  Topic#Subject
         result = new Article(Integer.parseInt(articleInfo[1]), Integer.parseInt(articleInfo[2]), articleInfo[3], Integer.parseInt(articleInfo[4]), Integer.parseInt(articleInfo[5]),articleInfo[6], articleInfo[7], articleInfo[8]);
 
@@ -28,7 +28,7 @@ public class ArticleSerializer implements LibrarySerializer {
 
         Article article = (Article)libraryObj;
 
-        String result = null;
+        String result;
         result = "Article" + separator + article.getId() + separator + article.getAuthorId() + separator + article.getTitle() + separator + article.getPublishingHouseId();
         result += separator + article.getPagesNum() + separator + article.getDescription() + separator + article.getTopic() + separator + article.getSubject();
         return result;

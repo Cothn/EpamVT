@@ -16,12 +16,9 @@ public class ServiceFactory {
     {
         return libraryService;
     }
-
-
     public static AuthorService getAuthorService() {
         return authorService;
     }
-
     public static EmployerService getEmployerService() {
         return employerService;
     }

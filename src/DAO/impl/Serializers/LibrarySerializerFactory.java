@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LibrarySerializerFactory {
+    private static String separator = "#";
 
-
-    static Map<String, LibrarySerializer> map = new HashMap<String, LibrarySerializer>(){};
+    static private Map<String, LibrarySerializer> map = new HashMap<String, LibrarySerializer>(){};
     static {
         map.put(Book.class.getSimpleName(), new BookSerializer());
         map.put(Article.class.getSimpleName(), new ArticleSerializer());
@@ -20,7 +20,7 @@ public class LibrarySerializerFactory {
 
     public LibraryObj  ParseLibraryObj(String libraryObjAsString)
     {
-        String[] bookInfo = libraryObjAsString.split("#");///!!!
+        String[] bookInfo = libraryObjAsString.split(separator);
         LibrarySerializer librarySerializer = map.get(bookInfo[0]);
         return librarySerializer.ParseLibraryObj(libraryObjAsString);
     }

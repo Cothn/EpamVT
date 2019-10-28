@@ -12,10 +12,8 @@ public class AuthorSerializer {
         if(authorInfo.length != 6)
             return null;
 
-        Author result = null;
-
+        Author result;
         result = new Author(Integer.parseInt(authorInfo[1]),  authorInfo[2], authorInfo[3], authorInfo[4], authorInfo[5]);
-
         return result;
     }
 

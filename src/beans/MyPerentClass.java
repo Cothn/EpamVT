@@ -11,6 +11,7 @@ public class MyPerentClass {
     MyPerentClass(int id){
         Id = id;
     }
+
     public int getId()
     {
         return Id;
@@ -28,17 +29,18 @@ public class MyPerentClass {
         int uniqId;
         do {
             isUniq = true;
-            uniqId = random.nextInt();
+            uniqId = random.nextInt(999999999);
             for (MyPerentClass identifier : ClassList) {
-                if (identifier.getId() == uniqId)
+                if (identifier.getId() == uniqId) {
                     isUniq = false;
+                    break;
+                }
             }
         }while (!isUniq || (uniqId == 0));
         return uniqId;
     }
 
     public String StringView() {
-
-        return String.format("id: %-20d", this.getId());
+        return String.format("id: %-10d", this.getId());
     }
 }
