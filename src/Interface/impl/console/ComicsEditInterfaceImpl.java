@@ -23,15 +23,36 @@ public class ComicsEditInterfaceImpl implements LibraryObjEditInterface {
     public LibraryObj ShowEditInterface() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter author Id:");
-        int authorId = scanner.nextInt();
+        int authorId;
+        if (scanner.hasNextInt()) {
+            authorId = scanner.nextInt();
+        }
+        else
+        {
+            authorId = 0;
+        }
         scanner.nextLine();
         System.out.println("Enter title:");
         String title = scanner.nextLine();
         System.out.println("Enter publishing house Id:");
-        int publishingHouseId = scanner.nextInt();
+        int publishingHouseId;
+        if (scanner.hasNextInt()) {
+            publishingHouseId = scanner.nextInt();
+        }
+        else
+        {
+            publishingHouseId = 0;
+        }
         scanner.nextLine();
         System.out.println("Enter number of pages:");
-        int pagesNum = scanner.nextInt();
+        int pagesNum;
+        if (scanner.hasNextInt()) {
+            pagesNum = scanner.nextInt();
+        }
+        else
+        {
+            pagesNum = 1;
+        }
         scanner.nextLine();
         System.out.println("Enter description:");
         String description = scanner.nextLine();

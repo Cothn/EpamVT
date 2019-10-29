@@ -10,7 +10,7 @@ import beans.LibraryObj;
 public class BookSerializer implements LibrarySerializer {
     //Book    Id#Author#title#publishngHouse#PageCount#description#  Genre#ISBN
     /**символ разделитель*/
-    private String separator = "#";
+    private String separator = "#";//
 
     /**
      * Генерирует класс на основе строки

@@ -83,7 +83,7 @@ public class AuthorServiceImpl implements AuthorService {
      * @param name имя автора
      * @return массив подходящих обьектов
      */
-    public ArrayList<Author> findByName(String name) {
+    public ArrayList<Author> findByName(String name) {//return colection
 
         ArrayList<Author> allAuthor =  DAOFactory.getAuthorDAO().getAll();
         ArrayList<Author> findAuthor = new ArrayList<>();
@@ -96,7 +96,7 @@ public class AuthorServiceImpl implements AuthorService {
         return findAuthor;
     }
 
-    static class  AuthorNameComparator implements Comparator<Author> {
+    private static class  AuthorNameComparator implements Comparator<Author> {
 
         public int compare(Author f, Author t){
             int result =  f.getName().compareTo(t.getName());

@@ -11,6 +11,7 @@ import service.ServiceFactory;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 /**
  * Хранит консольный интерфейс главного меню
  */
@@ -29,7 +30,7 @@ public class GlobalInterfaceImpl {
             System.out.println("2. See authors list");
             System.out.println("3. See publishing house list");
             System.out.println("4. See employer list");
-            System.out.println("5. See object by id");
+            System.out.println("5. See Author by id");
             System.out.println("6. Exit");
 
             String chosenNumber = scanner.nextLine();
@@ -73,28 +74,20 @@ public class GlobalInterfaceImpl {
     private void  ShowObject()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter library object id: ");
-        int objectId= scanner.nextInt();
-        scanner.nextLine();
-        MyPerentClass obj = ServiceFactory.getLibraryService().getLibraryObj(objectId);
-        if(obj == null )
-        {
-            obj = ServiceFactory.getAuthorService().getAuthor(objectId);
-            if(obj == null )
-            {
-                obj = ServiceFactory.getPublishingHouseService().getPublishingHouse(objectId);
-                if(obj == null )
-                {
-                    obj = ServiceFactory.getEmployerService().getEmployer(objectId);
-                }
+        System.out.println("Enter Author id: ");
+        if (scanner.hasNextInt()) {
+            int objectId = scanner.nextInt();
+            scanner.nextLine();
+            MyPerentClass obj = ServiceFactory.getAuthorService().getAuthor(objectId);
 
+            if (obj != null) {
+                System.out.println(obj.StringView());
+            } else {
+                System.out.println("Incorrect Author id");
             }
-
         }
-        if (obj != null) {
-            System.out.println(obj.StringView());
-        }
-        else {
+        else
+        {
             System.out.println("Incorrect library object id");
         }
     }
@@ -135,33 +128,44 @@ public class GlobalInterfaceImpl {
                 case "1": {
 
                     System.out.println("Enter library object id: ");
-                    int libraryObjectId= scanner.nextInt();
-                    scanner.nextLine();
-                    if(ServiceFactory.getLibraryService().getLibraryObj(libraryObjectId) == null )
-                    {
-                        System.out.println("Incorrect library object id");
-                        continue;
-                    }
+                    if (scanner.hasNextInt()) {
+                        int libraryObjectId = scanner.nextInt();
+                        scanner.nextLine();
+                        if (ServiceFactory.getLibraryService().getLibraryObj(libraryObjectId) == null) {
+                            System.out.println("Incorrect library object id");
+                            continue;//break
+                        }
 
-                    System.out.println("Enter library object type(Comics/Book/Article): ");
-                    String libraryObjectType = scanner.nextLine();
-                    LibraryObjEditInterface libraryObjEditInterface = LibraryObjEditFactory.GetEditInterface(libraryObjectType);
-                    if(libraryObjEditInterface == null)
-                    {
-                        System.out.println("Incorrect library object type");
-                        continue;
-                    }
+                        System.out.println("Enter library object type(Comics/Book/Article): ");
+                        String libraryObjectType = scanner.nextLine();
+                        LibraryObjEditInterface libraryObjEditInterface = LibraryObjEditFactory.GetEditInterface(libraryObjectType);
+                        if (libraryObjEditInterface == null) {
+                            System.out.println("Incorrect library object type");
+                            continue;
+                        }
 
-                    LibraryObj libraryObj = libraryObjEditInterface.ShowEditInterface();
-                    libraryObj.setId(libraryObjectId);
-                    ServiceFactory.getLibraryService().update(libraryObjectId,libraryObj);
+                        LibraryObj libraryObj = libraryObjEditInterface.ShowEditInterface();
+                        libraryObj.setId(libraryObjectId);
+                        ServiceFactory.getLibraryService().update(libraryObjectId, libraryObj);
+                    }
+                    else
+                    {
+                        scanner.nextLine();//
+                        System.out.println("Incorrect value!");
+                    }
                     break;
                 }
                 case "2": {
                     System.out.println("Enter library object id: ");
-                    int libraryObjId = scanner.nextInt();
-                    scanner.nextLine();
-                    ServiceFactory.getLibraryService().deleteLibraryObjById(libraryObjId);
+                    if (scanner.hasNextInt()) {
+                        int libraryObjId = scanner.nextInt();
+                        scanner.nextLine();
+                        ServiceFactory.getLibraryService().deleteLibraryObjById(libraryObjId);
+                    }
+                    else
+                    {
+                        System.out.println("Incorrect value!");
+                    }
                     break;
                 }
                 case "3": {
@@ -179,36 +183,42 @@ public class GlobalInterfaceImpl {
                 }
                 case "4": {
                     System.out.println("Enter author id: ");
-                    int authorId= scanner.nextInt();
-                    scanner.nextLine();
-                    ArrayList<LibraryObj> goodLibraryObj= ServiceFactory.getLibraryService().findByAuthor(authorId);
-                    if(goodLibraryObj.size() == 0)
+                    if (scanner.hasNextInt()) {
+                        int authorId = scanner.nextInt();
+                        scanner.nextLine();
+                        ArrayList<LibraryObj> goodLibraryObj = ServiceFactory.getLibraryService().findByAuthor(authorId);
+                        if (goodLibraryObj.size() == 0) {
+                            System.out.println("library object not found");
+                            continue;
+                        }
+                        for (LibraryObj libraryobj : goodLibraryObj) {
+                            System.out.println(libraryobj.StringView());
+                        }
+                    }
+                    else
                     {
-                        System.out.println("library object not found");
-                        continue;
+                        System.out.println("Incorrect value!");
                     }
-                    for (LibraryObj libraryobj: goodLibraryObj ) {
-                        System.out.println(libraryobj.StringView());
-                    }
-
-
                     break;
                 }
                 case "5": {
                     System.out.println("Enter publishing house id: ");
-                    int objId= scanner.nextInt();
-                    scanner.nextLine();
-                    ArrayList<LibraryObj> goodLibraryObj= ServiceFactory.getLibraryService().findByPublishingHouse(objId);
-                    if(goodLibraryObj.size() == 0)
+                    if (scanner.hasNextInt()) {
+                        int objId = scanner.nextInt();
+                        scanner.nextLine();
+                        ArrayList<LibraryObj> goodLibraryObj = ServiceFactory.getLibraryService().findByPublishingHouse(objId);
+                        if (goodLibraryObj.size() == 0) {
+                            System.out.println("library object not found");
+                            continue;
+                        }
+                        for (LibraryObj libraryobj : goodLibraryObj) {
+                            System.out.println(libraryobj.StringView());
+                        }
+                    }
+                    else
                     {
-                        System.out.println("library object not found");
-                        continue;
+                        System.out.println("Incorrect value!");
                     }
-                    for (LibraryObj libraryobj: goodLibraryObj ) {
-                        System.out.println(libraryobj.StringView());
-                    }
-
-
                     break;
                 }
                 case "6":
@@ -285,28 +295,39 @@ public class GlobalInterfaceImpl {
                 }
                 case "1": {
 
-                    System.out.println("Enter author id: ");
-                    int authorId= scanner.nextInt();
-                    scanner.nextLine();
-                    if(ServiceFactory.getAuthorService().getAuthor(authorId) == null )
-                    {
-                        System.out.println("Incorrect author id");
-                        continue;
+                        System.out.println("Enter author id: ");
+                    if (scanner.hasNextInt()) {
+                        int authorId = scanner.nextInt();
+                        scanner.nextLine();
+                        if (ServiceFactory.getAuthorService().getAuthor(authorId) == null) {
+                            System.out.println("Incorrect author id");
+                            continue;
+                        }
+
+
+                        AuthorEditInterface authorEditInterface = new AuthorEditInterfaceImpl();
+                        Author author = authorEditInterface.ShowEditInterface();
+                        author.setId(authorId);
+                        ServiceFactory.getAuthorService().update(authorId, author);
                     }
-
-
-
-                    AuthorEditInterface authorEditInterface = new AuthorEditInterfaceImpl();
-                    Author author = authorEditInterface.ShowEditInterface();
-                    author.setId(authorId);
-                    ServiceFactory.getAuthorService().update(authorId,author);
+                    else
+                    {
+                        System.out.println("Incorrect value!");
+                    }
                     break;
                 }
                 case "2": {
-                    System.out.println("Enter author id: ");
-                    int authorId = scanner.nextInt();
-                    scanner.nextLine();
-                    ServiceFactory.getAuthorService().deleteAuthorById(authorId);
+
+                        System.out.println("Enter author id: ");
+                    if (scanner.hasNextInt()) {
+                        int authorId = scanner.nextInt();
+                        scanner.nextLine();
+                        ServiceFactory.getAuthorService().deleteAuthorById(authorId);
+                    }
+                    else
+                    {
+                        System.out.println("Incorrect value!");
+                    }
                     break;
                 }
                 case "3": {
@@ -404,27 +425,37 @@ public class GlobalInterfaceImpl {
                 case "1": {
 
                     System.out.println("Enter employer id: ");
-                    int objId= scanner.nextInt();
-                    scanner.nextLine();
-                    if(ServiceFactory.getEmployerService().getEmployer(objId) == null )
-                    {
-                        System.out.println("Incorrect employer id");
-                        continue;
+                    if (scanner.hasNextInt()) {
+                        int objId = scanner.nextInt();
+                        scanner.nextLine();
+                        if (ServiceFactory.getEmployerService().getEmployer(objId) == null) {
+                            System.out.println("Incorrect employer id");
+                            continue;
+                        }
+
+
+                        EmployerEditInterface employerEditInterface = new EmployerEditInterfaceImpl();
+                        Employer obj = employerEditInterface.ShowEditInterface();
+                        obj.setId(objId);
+                        ServiceFactory.getEmployerService().update(objId, obj);
                     }
-
-
-
-                    EmployerEditInterface employerEditInterface = new EmployerEditInterfaceImpl();
-                    Employer obj = employerEditInterface.ShowEditInterface();
-                    obj.setId(objId);
-                    ServiceFactory.getEmployerService().update(objId,obj);
+                    else
+                    {
+                        System.out.println("Incorrect value!");
+                    }
                     break;
                 }
                 case "2": {
                     System.out.println("Enter employer id: ");
-                    int objId = scanner.nextInt();
-                    scanner.nextLine();
-                    ServiceFactory.getEmployerService().deleteEmployerById(objId);
+                    if (scanner.hasNextInt()) {
+                        int objId = scanner.nextInt();
+                        scanner.nextLine();
+                        ServiceFactory.getEmployerService().deleteEmployerById(objId);
+                    }
+                    else
+                    {
+                        System.out.println("Incorrect value!");
+                    }
                     break;
                 }
                 case "3": {
