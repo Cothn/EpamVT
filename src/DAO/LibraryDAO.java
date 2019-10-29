@@ -19,8 +19,9 @@ public interface LibraryDAO {
     ArrayList<LibraryObj> getAll();
 
     /**
-     * Обьеденят десериализованные обьект в единый список
-     * @return полный массив обьектов {@link LibraryObj}
+     * Ищет обьект по его идентификатору
+     * @param id идентификатор обьекта
+     * @return найденный обьект или null
      */
     LibraryObj getById(Integer id);
 

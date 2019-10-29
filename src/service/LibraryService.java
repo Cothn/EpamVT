@@ -1,3 +1,7 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
 package service;
 
 import beans.LibraryObj;
@@ -11,7 +15,7 @@ public interface LibraryService {
 
     /**
      * Передает обьект по его идентификатору, обращается к DAO
-     * @param iD идентификатор обьекта
+     * @param Id идентификатор обьекта
      * @return найденный обьект или null
      */
     LibraryObj getLibraryObj(Integer Id);

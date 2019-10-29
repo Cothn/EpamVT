@@ -1,3 +1,7 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
 package Interface.impl.console;
 
 import Interface.LibraryObjEditInterface;

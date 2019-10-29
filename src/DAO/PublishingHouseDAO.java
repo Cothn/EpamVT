@@ -19,8 +19,9 @@ public interface PublishingHouseDAO {
     ArrayList<PublishingHouse> getAll();
 
     /**
-     * Обьеденят десериализованные обьект в единый список
-     * @return полный массив обьектов {@link PublishingHouse}
+     * Ищет обьект по его идентификатору
+     * @param id идентификатор обьекта
+     * @return найденный обьект или null
      */
     PublishingHouse getById(Integer id);
 

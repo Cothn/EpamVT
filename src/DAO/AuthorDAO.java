@@ -19,8 +19,9 @@ public interface AuthorDAO {
     ArrayList<Author> getAll();
 
     /**
-     * Обьеденят десериализованные обьект в единый список
-     * @return полный массив обьектов {@link Author}
+     * Ищет обьект по его идентификатору
+     * @param id идентификатор обьекта
+     * @return найденный обьект или null
      */
     Author getById(Integer id);
 

@@ -19,8 +19,9 @@ public interface EmployerDAO {
     ArrayList<Employer> getAll();
 
     /**
-     * Обьеденят десериализованные обьект в единый список
-     * @return полный массив обьектов {@link Employer}
+     * Ищет обьект по его идентификатору
+     * @param id идентификатор обьекта
+     * @return найденный обьект или null
      */
     Employer getById(Integer id);
 
