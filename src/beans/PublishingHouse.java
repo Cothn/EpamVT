@@ -1,11 +1,24 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
+
 package beans;
 
+/**
+ * Хранит описание издательства
+ */
 public class PublishingHouse extends MyPerentClass{
 
+    /** название */
     private String title;
+    /** адресс */
     private String address;
+    /** телефон */
     private String phone;
+    /** дата основания */
     private String FoundationDate;
+    /** описаня издательства */
     private String Description;
 
     public PublishingHouse(int id, String title, String address, String phone, String FoundationDate, String description) {
@@ -53,6 +66,10 @@ public class PublishingHouse extends MyPerentClass{
         return FoundationDate;
     }
 
+    /**
+     * Генерация строкового представления обьекта
+     * @return Строковое представление описания издательства
+     */
     @Override
     public String StringView() {
 

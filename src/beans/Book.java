@@ -1,8 +1,18 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
+
 package beans;
 
+/**
+ * Хранит описание книги
+ */
 public class Book extends LibraryObj{
 
+    /** жанр */
     private String Genre;
+    /** международный идентефикатор книги */
     private String ISBN;
 
     public Book() {
@@ -29,6 +39,10 @@ public class Book extends LibraryObj{
         return ISBN;
     }
 
+    /**
+     * Генерация строкового представления обьекта
+     * @return Строковое представление описания книги
+     */
     @Override
     public String StringView() {
 

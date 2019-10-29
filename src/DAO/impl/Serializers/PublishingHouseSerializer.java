@@ -2,10 +2,19 @@ package DAO.impl.Serializers;
 
 import beans.PublishingHouse;
 
+/**
+ * Хранит методы сериализации/десериализации {@link PublishingHouse} в текстовый файл
+ */
 public class PublishingHouseSerializer {
     //PublishingHouse    Id#Title#Addres#phone#birthDate#description
+    /**символ разделитель*/
     private static String separator = "#";
 
+    /**
+     * Генерирует класс на основе строки
+     * @param publishingHouseAsString строка содержащая файловое представление класса
+     * @return класс сгенирированный на основе строки libraryObjAsString
+     */
     public static PublishingHouse ParsePublishingHouse(String publishingHouseAsString) {
         String[] publishingHouseInfo = publishingHouseAsString.split(separator);
 
@@ -17,6 +26,11 @@ public class PublishingHouseSerializer {
         return result;
     }
 
+    /**
+     * Генерирует строку на основе класса libraryObj
+     * @param publishingHouse обьект для сериализации
+     * @return строка содержащая файловое представление класса
+     */
     public static String FormatPublishingHouse(PublishingHouse publishingHouse) {
 
         String result;

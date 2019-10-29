@@ -1,13 +1,34 @@
+/**
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+*/
+
 package beans;
 
+/**
+ * Хранит описание статьи
+ */
 public class Article extends LibraryObj {
-
+    /** Тема статьи */
     private String Topic;
+    /** Обьект исследования */
     private String Subject;
 
     public Article() {
     }
 
+
+    /**
+     * Конструктор нового описания статьи
+     * @param id идентификатор
+     * @param authorId идентификатор автора
+     * @param title название
+     * @param publishingHouseId идентификатор издательства
+     * @param pagesNum число страниц
+     * @param description описание
+     * @param topic тема
+     * @param subject обьект исследования
+     */
     public Article(int id, int authorId, String title, int publishingHouseId, int pagesNum, String description,  String topic, String subject) {
         super( id, authorId, title, publishingHouseId, pagesNum,  description);
         Topic = topic;
@@ -28,6 +49,10 @@ public class Article extends LibraryObj {
         return Subject;
     }
 
+    /**
+     * Генерация строкового представления обьекта
+     * @return Строковое представление описания статьи
+     */
     @Override
     public String StringView() {
 

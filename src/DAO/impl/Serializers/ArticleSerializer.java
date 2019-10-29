@@ -3,9 +3,19 @@ package DAO.impl.Serializers;
 import beans.Article;
 import beans.LibraryObj;
 
+/**
+ * Хранит методы сериализации/десериализации {@link LibraryObj} в текстовый файл
+ */
 public class ArticleSerializer implements LibrarySerializer {
     //Article    Id#Author#title#publishngHouse#PageCount#description#  Topic#Subject
+    /**символ разделитель*/
     private String separator = "#";
+
+    /**
+     * Генерирует класс на основе строки
+     * @param libraryObjAsString строка содержащая файловое представление класса
+     * @return класс сгенирированный на основе строки libraryObjAsString
+     */
     @Override
     public LibraryObj ParseLibraryObj(String libraryObjAsString) {
         String[] articleInfo = libraryObjAsString.split(separator);
@@ -20,6 +30,11 @@ public class ArticleSerializer implements LibrarySerializer {
         return result;
     }
 
+    /**
+     * Генерирует строку на основе обьекта libraryObj
+     * @param libraryObj обьект для сериализации
+     * @return строка содержащая файловое представление класса
+     */
     @Override
     public String FormatLibraryObj(LibraryObj libraryObj) {
 

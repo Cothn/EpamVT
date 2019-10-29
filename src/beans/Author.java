@@ -1,11 +1,21 @@
+/*
+  Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+  CRUD VT 2019
+ */
+
 package beans;
 
-
+/**
+ * Хранит описание автора
+ */
 public class Author extends MyPerentClass{
-
+    /** имя */
     private String name;
+    /**  фамилия */
     private String surname;
+    /** дата рождения */
     private String birthDate;
+    /** описаня автора */
     private String Description;
 
     public Author() {
@@ -60,6 +70,10 @@ public class Author extends MyPerentClass{
         return birthDate;
     }
 
+    /**
+     * Генерация строкового представления обьекта
+     * @return Строковое представление описания автора
+     */
     @Override
     public String StringView() {
         String result;

@@ -2,10 +2,19 @@ package DAO.impl.Serializers;
 
 import beans.Employer;
 
+/**
+ * Хранит методы сериализации/десериализации {@link Employer} в текстовый файл
+ */
 public class EmployerSerializer {
     //Employer    Id#Name#Surname#birthDate#description
+    /**символ разделитель*/
     private static String separator = "#";
 
+    /**
+     * Генерирует класс на основе строки
+     * @param employerAsString строка содержащая файловое представление класса
+     * @return класс сгенирированный на основе строки libraryObjAsString
+     */
     public static   Employer ParseEmployer(String employerAsString) {
         String[] employerInfo = employerAsString.split(separator);
 
@@ -17,11 +26,16 @@ public class EmployerSerializer {
         return result;
     }
 
-    public static String FormatEmployer(Employer author) {
+    /**
+     * Генерирует строку на основе класса libraryObj
+     * @param employer обьект для сериализации
+     * @return строка содержащая файловое представление класса
+     */
+    public static String FormatEmployer(Employer employer) {
 
         String result;
-        result = "Employer" + separator + author.getId() + separator + author.getName() + separator + author.getSurname();
-        result += separator + author.getPhone()+ separator + author.getPosition();
+        result = "Employer" + separator + employer.getId() + separator + employer.getName() + separator + employer.getSurname();
+        result += separator + employer.getPhone()+ separator + employer.getPosition();
         return result;
     }
 }

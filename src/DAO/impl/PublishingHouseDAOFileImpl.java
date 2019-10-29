@@ -1,3 +1,7 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
 package DAO.impl;
 
 import DAO.PublishingHouseDAO;
@@ -14,15 +18,26 @@ import java.util.ArrayList;
 import static Const.GlobalConstant.SourceFilePath;
 
 public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
+    /** Кеш Обьектов  {@link PublishingHouse}*/
     private ArrayList<PublishingHouse> PublishingHouseBuff = null;
+
+    /** имя файла храняшего обьекты */
     private final String fileName = SourceFilePath +"\\PublishingHouse.txt";
 
+    /**
+     * Передает копию полного массива обьектов {@link PublishingHouse} за пределы класса
+     * @return копия полного массива обьектов {@link PublishingHouse}
+     */
     @Override
     public ArrayList<PublishingHouse> getAll() {
         ArrayList<PublishingHouse> allPublishingHouse = getAllPublishingHouse();
         return (ArrayList<PublishingHouse>) allPublishingHouse.clone();
     }
 
+    /**
+     * Обьеденят десериализованные обьект в единый список
+     * @return полный массив обьектов {@link PublishingHouse}
+     */
     private ArrayList<PublishingHouse> getAllPublishingHouse() {
         if(PublishingHouseBuff != null)
             return PublishingHouseBuff;
@@ -65,7 +80,11 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
         return allPublishingHouse;
     }
 
-
+    /**
+     * Ищет обьект по его идентификатору
+     * @param id идентификатор обьекта
+     * @return найденный обьект или null
+     */
     @Override
     public PublishingHouse getById(Integer id) {
         ArrayList<PublishingHouse> allPublishingHouse = getAllPublishingHouse();
@@ -77,6 +96,12 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
         return null;
     }
 
+    /**
+     * Замещает обьект с идентификатором id на обьект libraryObj(использует {@link PublishingHouseDAOFileImpl#savePublishingHouseToFile(ArrayList)})
+     * @param id идентификатор замещаемого обьекта
+     * @param publishingHouse новаый обьект
+     * @return номер обьекта в списке или 0 если обьекта с идентификатором id  не существует
+     */
     @Override
     public int update(Integer id, PublishingHouse publishingHouse) {
         ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
@@ -92,6 +117,11 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
         return 0;
     }
 
+    /**
+     * Удаляет обьект с идентификатором id (использует {@link PublishingHouseDAOFileImpl#savePublishingHouseToFile(ArrayList)})
+     * @param id идентификатор удаляемого обьекта
+     * @return true если удаление прошло успешно иначе false
+     */
     @Override
     public boolean deleteById(Integer id) {
         ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
@@ -107,23 +137,24 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
         return false;
     }
 
+    /**
+     * Добавляет новый обьект(newPublishingHous) в базу данных(использует {@link PublishingHouseDAOFileImpl#savePublishingHouseToFile(ArrayList)})
+     * @param newPublishingHouse новый обьект
+     * @return true если добавление прошло успешно иначе false
+     */
     @Override
-    public boolean delete(PublishingHouse publishingHouse) {
+    public boolean create(PublishingHouse newPublishingHouse) {
         ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
-        AllPublishingHouse .remove(publishingHouse);
+        newPublishingHouse.setId(MyPerentClass.getUniqId(new ArrayList<>(AllPublishingHouse)));
+        AllPublishingHouse.add(newPublishingHouse);
         savePublishingHouseToFile(AllPublishingHouse);
         return true;
     }
 
-    @Override
-    public boolean create(PublishingHouse newAuthor) {
-        ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
-        newAuthor.setId(MyPerentClass.getUniqId(new ArrayList<>(AllPublishingHouse)));
-        AllPublishingHouse.add(newAuthor);
-        savePublishingHouseToFile(AllPublishingHouse);
-        return true;
-    }
-
+    /**
+     * Сохраняет обьекты в базу данных
+     * @param publishingHouses полный список обьектов {@link PublishingHouse}
+     */
     private void savePublishingHouseToFile(ArrayList<PublishingHouse> publishingHouses)
     {
         try(FileWriter writer = new FileWriter(fileName, false))

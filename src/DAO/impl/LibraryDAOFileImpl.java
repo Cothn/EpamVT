@@ -1,3 +1,7 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
 package DAO.impl;
 
 
@@ -19,15 +23,26 @@ import static Const.GlobalConstant.SourceFilePath;
   Article (Topic, Subject) (Name, PageCount, Author, Id)
 */
 public class LibraryDAOFileImpl implements LibraryDAO {
-
+    /** Кеш Обьектов  {@link LibraryObj}*/
     private ArrayList<LibraryObj> LibraryObjBuff = null;
+
+    /** имя файла храняшего обьекты */
     private String fileName = SourceFilePath +"\\Library.txt";
+
+    /**
+     * Передает копию полного массива обьектов {@link LibraryObj} за пределы класса
+     * @return копия полного массива обьектов {@link LibraryObj}
+     */
     @Override
     public ArrayList<LibraryObj> getAll() {
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
         return (ArrayList<LibraryObj>) allLibraryObj.clone();
     }
 
+    /**
+     * Обьеденят десериализованные обьект в единый список
+     * @return полный массив обьектов {@link LibraryObj}
+     */
     private ArrayList<LibraryObj> getAllLibraryObj() {
         boolean needUpdate = false;
         if(LibraryObjBuff != null)
@@ -90,6 +105,11 @@ public class LibraryDAOFileImpl implements LibraryDAO {
         return allLibraryObj;
     }
 
+    /**
+     * Ищет обьект по его идентификатору
+     * @param id идентификатор обьекта
+     * @return найденный обьект или null
+     */
     @Override
     public LibraryObj getById(Integer id) {
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
@@ -101,6 +121,12 @@ public class LibraryDAOFileImpl implements LibraryDAO {
         return null;
     }
 
+    /**
+     * Замещает обьект с идентификатором id на обьект libraryObj(использует {@link LibraryDAOFileImpl#saveLibraryToFile(ArrayList)})
+     * @param id идентификатор замещаемого обьекта
+     * @param libraryObj новаый обьект
+     * @return номер обьекта в списке или 0 если обьекта с идентификатором id  не существует
+     */
     @Override
     public int update(Integer id, LibraryObj libraryObj) {
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
@@ -116,6 +142,11 @@ public class LibraryDAOFileImpl implements LibraryDAO {
         return 0;
     }
 
+    /**
+     * Удаляет обьект с идентификатором id (использует {@link LibraryDAOFileImpl#saveLibraryToFile(ArrayList)})
+     * @param id идентификатор удаляемого обьекта
+     * @return true если удаление прошло успешно иначе false
+     */
     @Override
     public boolean deleteById(Integer id) {
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
@@ -131,14 +162,11 @@ public class LibraryDAOFileImpl implements LibraryDAO {
         return false;
     }
 
-    @Override
-    public boolean delete(LibraryObj libraryObj) {
-        ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
-        allLibraryObj .remove(libraryObj);
-        saveLibraryToFile(allLibraryObj);
-        return true;
-    }
-
+    /**
+     * Добавляет новый обьект(newLibraryObj) в базу данных(использует {@link LibraryDAOFileImpl#saveLibraryToFile(ArrayList)})
+     * @param newLibraryObj новый обьект
+     * @return true если добавление прошло успешно иначе false
+     */
     @Override
     public boolean create(LibraryObj newLibraryObj) {
         ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
@@ -148,6 +176,10 @@ public class LibraryDAOFileImpl implements LibraryDAO {
         return true;
     }
 
+    /**
+     * Сохраняет обьекты в базу данных
+     * @param libraryObjs полный список обьектов {@link LibraryObj}
+     */
     private void saveLibraryToFile(ArrayList<LibraryObj> libraryObjs)
     {
         try(FileWriter writer = new FileWriter(fileName, false))

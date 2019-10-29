@@ -1,10 +1,21 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
+
 package beans;
 
+/**
+ * Хранит описание сотрудника библиотеки
+ */
 public class Employer extends MyPerentClass {
-
+    /** имя сотрудника*/
     private String name;
+    /**  фамилия */
     private String surname;
+    /**  телефон */
     private String phone;
+    /**  должность */
     private String position;
 
     public Employer(int id, String name, String surname, String phone, String position) {
@@ -41,6 +52,10 @@ public class Employer extends MyPerentClass {
         return position;
     }
 
+    /**
+     * Генерация строкового представления обьекта
+     * @return Строковое представление описания сотрудника библиотеки
+     */
     @Override
     public String StringView() {
 

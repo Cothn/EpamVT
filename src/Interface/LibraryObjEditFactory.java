@@ -11,7 +11,12 @@ import beans.Comics;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Содержит методы получения конкреттных реализаций интерфейса создания обьекта
+ */
 public class LibraryObjEditFactory {
+
+    /**Hash-Map соотносящая имя класса и его интерфейса создания обьекта*/
     static private Map<String, LibraryObjEditInterface> map = new HashMap<String, LibraryObjEditInterface>(){};
     static {
         map.put(Book.class.getSimpleName(), new BookEditInterfaceImpl());
@@ -19,6 +24,11 @@ public class LibraryObjEditFactory {
         map.put(Comics.class.getSimpleName(), new ComicsEditInterfaceImpl());
     }
 
+    /**
+     * Получает обьект по его имени
+     * @param LibraryObjType тип обьекта
+     * @return интерфейс создания обьекта
+     */
     public static LibraryObjEditInterface GetEditInterface(String LibraryObjType)
     {
         return map.get(LibraryObjType);

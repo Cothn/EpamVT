@@ -4,7 +4,15 @@ import beans.Author;
 
 import java.util.Scanner;
 
+/**
+ * Хранит консольный интерфейс создания обьекта {@link Author}
+ */
 public class AuthorEditInterfaceImpl implements Interface.AuthorEditInterface {
+
+    /**
+     * Выводит на консоль интерфейс создания обьекта, и создает обьект {@link Author}
+     * @return созданный обьект
+     */
     @Override
     public Author ShowEditInterface() {
         Scanner scanner = new Scanner(System.in);

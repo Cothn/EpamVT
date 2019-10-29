@@ -1,8 +1,17 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
+
 package beans;
 
-
+/**
+ * Хранит описание комикса
+ */
 public class Comics extends  LibraryObj{
+    /** вид рисовки */
     private String drawing;
+    /** вселенная комикса */
     private String universe;
 
 
@@ -23,6 +32,10 @@ public class Comics extends  LibraryObj{
         this.universe = universe;
     }
 
+    /**
+     * Генерация строкового представления обьекта
+     * @return Строковое представление описания комикса
+     */
     @Override
     public String StringView() {
 

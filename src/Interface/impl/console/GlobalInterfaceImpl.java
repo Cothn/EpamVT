@@ -7,7 +7,14 @@ import service.ServiceFactory;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Хранит консольный интерфейс главного меню
+ */
 public class GlobalInterfaceImpl {
+
+    /**
+     * Выводит на консоль интерфейс главного меню
+     */
     public void Show() {
         boolean FExit = false;
         Scanner scanner = new Scanner(System.in);
@@ -56,6 +63,9 @@ public class GlobalInterfaceImpl {
 
     }
 
+    /**
+     * Выводит на консоль обьект по Id
+     */
     private void  ShowObject()
     {
         Scanner scanner = new Scanner(System.in);
@@ -85,6 +95,9 @@ public class GlobalInterfaceImpl {
         }
     }
 
+    /**
+     * Выводит на консоль интерфейс взаимодействия с библиотекой
+     */
     private void ShowLibrary(){
         boolean endAction = false;
         Scanner scanner = new Scanner(System.in);
@@ -234,6 +247,9 @@ public class GlobalInterfaceImpl {
         }       /**/
     }
 
+    /**
+     * Выводит на консоль интерфейс взаимодействия с авторами
+     */
     private void ShowAuthors(){
         boolean endAction = false;
         Scanner scanner = new Scanner(System.in);
@@ -349,6 +365,9 @@ public class GlobalInterfaceImpl {
         }       /**/
     }
 
+    /**
+     * Выводит на консоль интерфейс взаимодействия с сотрудниками
+     */
     private void ShowEmployers(){
         boolean endAction = false;
         Scanner scanner = new Scanner(System.in);
@@ -464,6 +483,9 @@ public class GlobalInterfaceImpl {
         }       /**/
     }
 
+    /**
+     * Выводит на консоль интерфейс взаимодействия с издательствами
+     */
     private void ShowPublishingHouse(){
         boolean endAction = false;
         Scanner scanner = new Scanner(System.in);

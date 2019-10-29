@@ -1,10 +1,21 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
+
 package beans;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Базавый класс для всех обьектов хранящихся в базе данных
+ */
 public class MyPerentClass {
+    /** Идентификатор обьекта */
     private int Id;
+
+
 
     MyPerentClass(){}
 
@@ -22,6 +33,11 @@ public class MyPerentClass {
         Id = id;
     }
 
+    /**
+     * Генерирует уникальный ID
+     * @param ClassList массив существующих обьектов
+     * @return новый, уникальный идентификатор обьекта
+     */
     public static int getUniqId(ArrayList<MyPerentClass> ClassList)
     {
         Random random = new Random(System.currentTimeMillis());

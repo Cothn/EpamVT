@@ -1,13 +1,23 @@
+/*
+ * Всеволод Гринчик 751003 (HRYNCHYK USEVALAD)
+ * CRUD VT 2019
+ */
+
 package beans;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
+/**
+ * Базовый клас для описания различных текстовых обьектов хранящихся в библиотеке
+ */
 public class LibraryObj extends MyPerentClass {
+    /** идентификатор атора */
     private int authorId;
+    /** название */
     private String title;
+    /** идентификатор издательства */
     private int publishingHouseId;
+    /** число страниц */
     private int pagesNum;
+    /** описание обьекта */
     private String Description;
 
     public LibraryObj() {}

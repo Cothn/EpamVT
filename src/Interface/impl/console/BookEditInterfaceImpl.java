@@ -6,7 +6,15 @@ import beans.LibraryObj;
 
 import java.util.Scanner;
 
+/**
+ * Хранит консольный интерфейс создания обьекта {@link Book}
+ */
 public class BookEditInterfaceImpl implements LibraryObjEditInterface {
+
+    /**
+     * Выводит на консоль интерфейс создания обьекта, и создает обьект {@link Book}
+     * @return созданный обьект
+     */
     @Override
     public LibraryObj ShowEditInterface() {
         Scanner scanner = new Scanner(System.in);

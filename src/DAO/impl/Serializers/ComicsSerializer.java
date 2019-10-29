@@ -3,9 +3,19 @@ package DAO.impl.Serializers;
 import beans.Comics;
 import beans.LibraryObj;
 
+/**
+ * Хранит методы сериализации/десериализации {@link LibraryObj} в текстовый файл
+ */
 public class ComicsSerializer implements LibrarySerializer{
     //Comics    Id#Author#title#publishngHouse#PageCount#description#  drawing#universe
+    /**символ разделитель*/
     private String separator = "#";
+
+    /**
+     * Генерирует класс на основе строки
+     * @param libraryObjAsString строка содержащая файловое представление класса
+     * @return класс сгенирированный на основе строки libraryObjAsString
+     */
     @Override
     public LibraryObj ParseLibraryObj(String libraryObjAsString) {
         String[] comicsInfo = libraryObjAsString.split(separator);
@@ -19,6 +29,11 @@ public class ComicsSerializer implements LibrarySerializer{
         return result;
     }
 
+    /**
+     * Генерирует строку на основе класса libraryObj
+     * @param libraryObj обьект для сериализации
+     * @return строка содержащая файловое представление класса
+     */
     @Override
     public String FormatLibraryObj(LibraryObj libraryObj) {
         if(!(libraryObj instanceof Comics))
