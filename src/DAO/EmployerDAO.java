@@ -7,6 +7,7 @@ package DAO;
 import beans.Employer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к базе даных хранящей обьекты {@link Employer}
@@ -16,7 +17,7 @@ public interface EmployerDAO {
      * Передает полный массив обьектов {@link Employer}
      * @return полный массив обьектов {@link Employer}
      */
-    ArrayList<Employer> getAll();
+    List<Employer> getAll();
 
     /**
      * Ищет обьект по его идентификатору

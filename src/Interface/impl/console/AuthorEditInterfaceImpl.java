@@ -18,7 +18,7 @@ public class AuthorEditInterfaceImpl implements Interface.AuthorEditInterface {
      * @return созданный обьект
      */
     @Override
-    public Author ShowEditInterface() {
+    public Author showEditInterface() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name:");
         String name = scanner.nextLine();

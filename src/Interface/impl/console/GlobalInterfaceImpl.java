@@ -81,7 +81,7 @@ public class GlobalInterfaceImpl {
             MyPerentClass obj = ServiceFactory.getAuthorService().getAuthor(objectId);
 
             if (obj != null) {
-                System.out.println(obj.StringView());
+                System.out.println(obj.stringView());
             } else {
                 System.out.println("Incorrect Author id");
             }
@@ -101,7 +101,7 @@ public class GlobalInterfaceImpl {
 
         System.out.println("Book List");
         for (LibraryObj library: ServiceFactory.getLibraryService().getAllLibraryObj() ) {
-            System.out.println(library.StringView());
+            System.out.println(library.stringView());
         }
         while (!endAction) {
             System.out.println("What are you want?");
@@ -121,7 +121,7 @@ public class GlobalInterfaceImpl {
                 {
                     System.out.println("Book List");
                     for (LibraryObj library: ServiceFactory.getLibraryService().getAllLibraryObj() ) {
-                        System.out.println(library.StringView());
+                        System.out.println(library.stringView());
                     }
                     break;
                 }
@@ -138,13 +138,13 @@ public class GlobalInterfaceImpl {
 
                         System.out.println("Enter library object type(Comics/Book/Article): ");
                         String libraryObjectType = scanner.nextLine();
-                        LibraryObjEditInterface libraryObjEditInterface = LibraryObjEditFactory.GetEditInterface(libraryObjectType);
+                        LibraryObjEditInterface libraryObjEditInterface = LibraryObjEditFactory.getEditInterface(libraryObjectType);
                         if (libraryObjEditInterface == null) {
                             System.out.println("Incorrect library object type");
                             continue;
                         }
 
-                        LibraryObj libraryObj = libraryObjEditInterface.ShowEditInterface();
+                        LibraryObj libraryObj = libraryObjEditInterface.showEditInterface();
                         libraryObj.setId(libraryObjectId);
                         ServiceFactory.getLibraryService().update(libraryObjectId, libraryObj);
                     }
@@ -171,13 +171,13 @@ public class GlobalInterfaceImpl {
                 case "3": {
                     System.out.println("Enter library object type(Comics/Book/Article): ");
                     String libraryObjType = scanner.nextLine();
-                    LibraryObjEditInterface libraryObjEditInterface = LibraryObjEditFactory.GetEditInterface(libraryObjType);
+                    LibraryObjEditInterface libraryObjEditInterface = LibraryObjEditFactory.getEditInterface(libraryObjType);
                     if(libraryObjEditInterface == null)
                     {
                         System.out.println("Incorrect library object type");
                         continue;
                     }
-                    LibraryObj libraryObj = libraryObjEditInterface.ShowEditInterface();
+                    LibraryObj libraryObj = libraryObjEditInterface.showEditInterface();
                     ServiceFactory.getLibraryService().addLibraryObj(libraryObj);
                     break;
                 }
@@ -186,13 +186,13 @@ public class GlobalInterfaceImpl {
                     if (scanner.hasNextInt()) {
                         int authorId = scanner.nextInt();
                         scanner.nextLine();
-                        ArrayList<LibraryObj> goodLibraryObj = ServiceFactory.getLibraryService().findByAuthor(authorId);
+                        ArrayList<LibraryObj> goodLibraryObj = (ArrayList<LibraryObj>)ServiceFactory.getLibraryService().findByAuthor(authorId);
                         if (goodLibraryObj.size() == 0) {
                             System.out.println("library object not found");
                             continue;
                         }
                         for (LibraryObj libraryobj : goodLibraryObj) {
-                            System.out.println(libraryobj.StringView());
+                            System.out.println(libraryobj.stringView());
                         }
                     }
                     else
@@ -206,13 +206,13 @@ public class GlobalInterfaceImpl {
                     if (scanner.hasNextInt()) {
                         int objId = scanner.nextInt();
                         scanner.nextLine();
-                        ArrayList<LibraryObj> goodLibraryObj = ServiceFactory.getLibraryService().findByPublishingHouse(objId);
+                        ArrayList<LibraryObj> goodLibraryObj = (ArrayList<LibraryObj>)ServiceFactory.getLibraryService().findByPublishingHouse(objId);
                         if (goodLibraryObj.size() == 0) {
                             System.out.println("library object not found");
                             continue;
                         }
                         for (LibraryObj libraryobj : goodLibraryObj) {
-                            System.out.println(libraryobj.StringView());
+                            System.out.println(libraryobj.stringView());
                         }
                     }
                     else
@@ -241,9 +241,9 @@ public class GlobalInterfaceImpl {
                         }
 
                     }
-                    ArrayList<LibraryObj> sortObjs= ServiceFactory.getLibraryService().sortByTitle(ascending);
+                    ArrayList<LibraryObj> sortObjs= (ArrayList<LibraryObj>)ServiceFactory.getLibraryService().sortByTitle(ascending);
                     for (LibraryObj sortObj: sortObjs ) {
-                        System.out.println(sortObj.StringView());
+                        System.out.println(sortObj.stringView());
                     }
 
                     break;
@@ -270,7 +270,7 @@ public class GlobalInterfaceImpl {
 
         System.out.println("Author List");
         for (Author author: ServiceFactory.getAuthorService().getAllAuthor() ) {
-            System.out.println(author.StringView());
+            System.out.println(author.stringView());
         }
         while (!endAction) {
             System.out.println("What are you want?");
@@ -289,7 +289,7 @@ public class GlobalInterfaceImpl {
                 {
                     System.out.println("Author List");
                     for (Author author: ServiceFactory.getAuthorService().getAllAuthor() ) {
-                        System.out.println(author.StringView());
+                        System.out.println(author.stringView());
                     }
                     break;
                 }
@@ -306,7 +306,7 @@ public class GlobalInterfaceImpl {
 
 
                         AuthorEditInterface authorEditInterface = new AuthorEditInterfaceImpl();
-                        Author author = authorEditInterface.ShowEditInterface();
+                        Author author = authorEditInterface.showEditInterface();
                         author.setId(authorId);
                         ServiceFactory.getAuthorService().update(authorId, author);
                     }
@@ -333,7 +333,7 @@ public class GlobalInterfaceImpl {
                 case "3": {
 
                     AuthorEditInterface authorEditInterface = new AuthorEditInterfaceImpl();
-                    Author author = authorEditInterface.ShowEditInterface();
+                    Author author = authorEditInterface.showEditInterface();
                     ServiceFactory.getAuthorService().addAuthor( author);
                     break;
                 }
@@ -341,14 +341,14 @@ public class GlobalInterfaceImpl {
 
                     System.out.println("Enter author name: ");
                     String line= scanner.nextLine();
-                    ArrayList<Author> goodObjs= ServiceFactory.getAuthorService().findByName(line);
+                    ArrayList<Author> goodObjs= (ArrayList<Author>)ServiceFactory.getAuthorService().findByName(line);
                     if(goodObjs.size() == 0)
                     {
                         System.out.println("authors not found");
                         continue;
                     }
                     for (Author goodObj: goodObjs ) {
-                        System.out.println(goodObj.StringView());
+                        System.out.println(goodObj.stringView());
                     }
 
                     break;
@@ -372,9 +372,9 @@ public class GlobalInterfaceImpl {
                         }
 
                     }
-                    ArrayList<Author> sortObjs= ServiceFactory.getAuthorService().sortByName(ascending);
+                    ArrayList<Author> sortObjs= (ArrayList<Author>)ServiceFactory.getAuthorService().sortByName(ascending);
                     for (Author sortObj: sortObjs ) {
-                        System.out.println(sortObj.StringView());
+                        System.out.println(sortObj.stringView());
                     }
                     break;
                 }
@@ -399,7 +399,7 @@ public class GlobalInterfaceImpl {
 
         System.out.println("Employer List");
         for (Employer obj: ServiceFactory.getEmployerService().getAllEmployer() ) {
-            System.out.println(obj.StringView());
+            System.out.println(obj.stringView());
         }
         while (!endAction) {
             System.out.println("What are you want?");
@@ -418,7 +418,7 @@ public class GlobalInterfaceImpl {
                 {
                     System.out.println("Employer List");
                     for (Employer obj: ServiceFactory.getEmployerService().getAllEmployer() ) {
-                        System.out.println(obj.StringView());
+                        System.out.println(obj.stringView());
                     }
                     break;
                 }
@@ -435,7 +435,7 @@ public class GlobalInterfaceImpl {
 
 
                         EmployerEditInterface employerEditInterface = new EmployerEditInterfaceImpl();
-                        Employer obj = employerEditInterface.ShowEditInterface();
+                        Employer obj = employerEditInterface.showEditInterface();
                         obj.setId(objId);
                         ServiceFactory.getEmployerService().update(objId, obj);
                     }
@@ -461,21 +461,21 @@ public class GlobalInterfaceImpl {
                 case "3": {
 
                     EmployerEditInterface editInterface = new EmployerEditInterfaceImpl();
-                    Employer employer = editInterface.ShowEditInterface();
+                    Employer employer = editInterface.showEditInterface();
                     ServiceFactory.getEmployerService().addEmployer(employer);
                     break;
                 }
                 case "4": {
                     System.out.println("Enter employer position: ");
                     String position= scanner.nextLine();
-                    ArrayList<Employer> goodObjs= ServiceFactory.getEmployerService().findByPosition(position);
+                    ArrayList<Employer> goodObjs= (ArrayList<Employer>)ServiceFactory.getEmployerService().findByPosition(position);
                     if(goodObjs.size() == 0)
                     {
                         System.out.println("employers not found");
                         continue;
                     }
                     for (Employer goodObj: goodObjs ) {
-                        System.out.println(goodObj.StringView());
+                        System.out.println(goodObj.stringView());
                     }
 
 
@@ -500,9 +500,9 @@ public class GlobalInterfaceImpl {
                         }
 
                     }
-                    ArrayList<Employer> sortObjs= ServiceFactory.getEmployerService().sortByName(ascending);
+                    ArrayList<Employer> sortObjs= (ArrayList<Employer>)ServiceFactory.getEmployerService().sortByName(ascending);
                     for (Employer sortObj: sortObjs ) {
-                        System.out.println(sortObj.StringView());
+                        System.out.println(sortObj.stringView());
                     }
                     break;
                 }
@@ -527,7 +527,7 @@ public class GlobalInterfaceImpl {
 
         System.out.println("Publishing house List");
         for (PublishingHouse obj: ServiceFactory.getPublishingHouseService().getAllPublishingHouse() ) {
-            System.out.println(obj.StringView());
+            System.out.println(obj.stringView());
         }
         while (!endAction) {
             System.out.println("What are you want?");
@@ -546,7 +546,7 @@ public class GlobalInterfaceImpl {
                 {
                     System.out.println("Publishing house List");
                     for (PublishingHouse obj: ServiceFactory.getPublishingHouseService().getAllPublishingHouse() ) {
-                        System.out.println(obj.StringView());
+                        System.out.println(obj.stringView());
                     }
                     break;
                 }
@@ -564,7 +564,7 @@ public class GlobalInterfaceImpl {
 
 
                     PublishingHouseEditInterface editInterface = new PublishingHouseEditInterfaceImpl();
-                    PublishingHouse obj = editInterface.ShowEditInterface();
+                    PublishingHouse obj = editInterface.showEditInterface();
                     obj.setId(objId);
                     ServiceFactory.getPublishingHouseService().update(objId,obj);
                     break;
@@ -579,21 +579,21 @@ public class GlobalInterfaceImpl {
                 case "3": {
 
                     PublishingHouseEditInterface editInterface = new PublishingHouseEditInterfaceImpl();
-                    PublishingHouse publishingHouse = editInterface.ShowEditInterface();
+                    PublishingHouse publishingHouse = editInterface.showEditInterface();
                     ServiceFactory.getPublishingHouseService().addPublishingHouse(publishingHouse);
                     break;
                 }
                 case "4": {
                     System.out.println("Enter publishing house title: ");
                     String title= scanner.nextLine();
-                    ArrayList<PublishingHouse> goodPublishingHouse= ServiceFactory.getPublishingHouseService().findByTitle(title);
+                    ArrayList<PublishingHouse> goodPublishingHouse= (ArrayList<PublishingHouse>)ServiceFactory.getPublishingHouseService().findByTitle(title);
                     if(goodPublishingHouse.size() == 0)
                     {
                         System.out.println("publishing house not found");
                         continue;
                     }
                     for (PublishingHouse publishingHouse: goodPublishingHouse ) {
-                        System.out.println(publishingHouse.StringView());
+                        System.out.println(publishingHouse.stringView());
                     }
 
 
@@ -618,9 +618,9 @@ public class GlobalInterfaceImpl {
                         }
 
                     }
-                    ArrayList<PublishingHouse> sortObjs= ServiceFactory.getPublishingHouseService().sortByTitle(ascending);
+                    ArrayList<PublishingHouse> sortObjs= (ArrayList<PublishingHouse>)ServiceFactory.getPublishingHouseService().sortByTitle(ascending);
                     for (PublishingHouse sortObj: sortObjs ) {
-                        System.out.println(sortObj.StringView());
+                        System.out.println(sortObj.stringView());
                     }
                     break;
                 }

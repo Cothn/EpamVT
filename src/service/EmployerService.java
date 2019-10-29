@@ -6,7 +6,7 @@ package service;
 
 import beans.Employer;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к бизнес логике обьекта {@link Employer}
@@ -30,7 +30,7 @@ public interface EmployerService {
      * Извлекает полный массив обьектов {@link Employer}
      * @return полный массив обьектов {@link Employer}
      */
-    ArrayList<Employer> getAllEmployer() ;
+    List<Employer> getAllEmployer() ;
 
     /**
      * Замещает обьект с идентификатором id на обьект employer
@@ -50,12 +50,12 @@ public interface EmployerService {
      * @param ascending вид сортировки (если true то по возрастанию)
      * @return отссортированный массив
      */
-    ArrayList<Employer> sortByName(boolean ascending);
+    List<Employer> sortByName(boolean ascending);
 
     /**
      * Ищет обьект по должности
      * @param position должность автора
      * @return массив подходящих обьектов
      */
-    ArrayList<Employer> findByPosition(String position);
+    List<Employer> findByPosition(String position);
 }

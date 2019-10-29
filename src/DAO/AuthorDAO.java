@@ -7,6 +7,7 @@ package DAO;
 import beans.Author;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к базе даных хранящей обьекты {@link Author}
@@ -16,7 +17,7 @@ public interface AuthorDAO {
      * Передает полный массив обьектов {@link Author}
      * @return полный массив обьектов {@link Author}
      */
-    ArrayList<Author> getAll();
+    List<Author> getAll();
 
     /**
      * Ищет обьект по его идентификатору

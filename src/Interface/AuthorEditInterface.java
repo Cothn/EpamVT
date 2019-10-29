@@ -14,5 +14,5 @@ public interface AuthorEditInterface {
      * Выводит на консоль интерфейс создания обьекта
      * @return созданный обьект
      */
-    Author  ShowEditInterface();
+    Author showEditInterface();
 }

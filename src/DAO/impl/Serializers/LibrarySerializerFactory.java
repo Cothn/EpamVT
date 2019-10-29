@@ -28,11 +28,11 @@ public class LibrarySerializerFactory {
      * @param libraryObjAsString строка содержащая файловое представление класса
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
-    public LibraryObj  ParseLibraryObj(String libraryObjAsString)
+    public LibraryObj parseLibraryObj(String libraryObjAsString)
     {
         String[] bookInfo = libraryObjAsString.split(separator);
         LibrarySerializer librarySerializer = map.get(bookInfo[0]);
-        return librarySerializer.ParseLibraryObj(libraryObjAsString);
+        return librarySerializer.parseLibraryObj(libraryObjAsString);
     }
 
     /**
@@ -40,9 +40,9 @@ public class LibrarySerializerFactory {
      * @param libraryObj обьект для сериализации
      * @return строка содержащая файловое представление класса
      */
-    public String FormatLibraryObj(LibraryObj libraryObj)
+    public String formatLibraryObj(LibraryObj libraryObj)
     {
         LibrarySerializer librarySerializer = map.get(libraryObj.getClass().getSimpleName());
-        return librarySerializer.FormatLibraryObj(libraryObj);
+        return librarySerializer.formatLibraryObj(libraryObj);
     }
 }

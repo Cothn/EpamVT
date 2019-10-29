@@ -20,7 +20,7 @@ public class BookEditInterfaceImpl implements LibraryObjEditInterface {
      * @return созданный обьект
      */
     @Override
-    public LibraryObj ShowEditInterface() {
+    public LibraryObj showEditInterface() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter author Id:");
         int authorId;

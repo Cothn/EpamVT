@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static Const.GlobalConstant.SourceFilePath;
 
@@ -25,15 +26,15 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
     private final String fileName = SourceFilePath +"\\Authors.txt";
 
     /** Кеш Обьектов  {@link Author}*/
-    private ArrayList<Author> AuthorsBuff = null;
+    private ArrayList<Author> authorsBuff = null;
 
     /**
      * Передает копию полного массива обьектов {@link Author} за пределы класса
      * @return копия полного массива обьектов {@link Author}
      */
     @Override
-    public ArrayList<Author> getAll() {
-        ArrayList<Author> allAuthors = getAllAuthors();
+    public List<Author> getAll() {
+        ArrayList<Author> allAuthors = (ArrayList<Author>)getAllAuthors();
         return (ArrayList<Author>) allAuthors.clone();
     }
 
@@ -41,9 +42,9 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
      * Обьеденят десериализованные обьект в единый список
      * @return полный массив обьектов {@link Author}
      */
-    private ArrayList<Author> getAllAuthors() {
-        if(AuthorsBuff != null)
-            return AuthorsBuff;
+    private List<Author> getAllAuthors() {
+        if(authorsBuff != null)
+            return authorsBuff;
 
         ArrayList<Author> allAuthors = new ArrayList<>();
         BufferedReader buff = null;
@@ -59,7 +60,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
                 if (line == null || line.equals(""))
                     break;
 
-                allAuthors.add(AuthorSerializer.ParseAuthors(line));
+                allAuthors.add(AuthorSerializer.parseAuthors(line));
             }
         }
         catch (IOException e)
@@ -78,7 +79,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
                 e1.printStackTrace();
             }
         }
-        AuthorsBuff = allAuthors;
+        authorsBuff = allAuthors;
         return allAuthors;
     }
 
@@ -89,7 +90,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
      */
     @Override
     public Author getById(Integer id) {
-        ArrayList<Author> allAuthors = getAllAuthors();
+        ArrayList<Author> allAuthors = (ArrayList<Author>)getAllAuthors();
         for(Author author : allAuthors)
         {
             if(author.getId() == id)
@@ -106,7 +107,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
      */
     @Override
     public int update(Integer id, Author author) {
-        ArrayList<Author> AllAuthors = getAllAuthors();
+        ArrayList<Author> AllAuthors = (ArrayList<Author>)getAllAuthors();
         for(int i = 0; i < AllAuthors.size();i++)
         {
             if(AllAuthors.get(i).getId() == id)
@@ -126,7 +127,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
      */
     @Override
     public boolean deleteById(Integer id) {
-        ArrayList<Author> AllAuthors = getAllAuthors();
+        ArrayList<Author> AllAuthors = (ArrayList<Author>)getAllAuthors();
         for(int i = 0; i < AllAuthors.size();i++)
         {
             if(AllAuthors.get(i).getId() == id)
@@ -147,7 +148,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
     @Override
     public boolean create(Author newAuthor) {
         boolean result = false;
-        ArrayList<Author> AllAuthors = getAllAuthors();
+        ArrayList<Author> AllAuthors = (ArrayList<Author>)getAllAuthors();
         newAuthor.setId(MyPerentClass.getUniqId(new ArrayList<>(AllAuthors)));
         AllAuthors.add(newAuthor);
         saveAutorsToFile(AllAuthors);
@@ -165,7 +166,7 @@ public class AuthorDAOFileImpl  implements AuthorDAO {
         {
             for(Author author: authors)
             {
-                writer.write(AuthorSerializer.FormatAuthor(author));
+                writer.write(AuthorSerializer.formatAuthor(author));
                 writer.append('\n');
             }
             writer.flush();

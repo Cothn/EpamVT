@@ -11,6 +11,7 @@ import service.AuthorService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Хранит методы работы c обьектами {@link Author}
@@ -38,7 +39,7 @@ public class AuthorServiceImpl implements AuthorService {
      * Извлекает полный массив обьектов {@link Author} через DAO
      * @return полный массив обьектов {@link Author}
      */
-    public ArrayList<Author> getAllAuthor() {
+    public List<Author> getAllAuthor() {
 
         return DAOFactory.getAuthorDAO().getAll();
     }
@@ -66,16 +67,16 @@ public class AuthorServiceImpl implements AuthorService {
      * @param ascending вид сортировки (если true то по возрастанию)
      * @return отссортированный массив
      */
-    public ArrayList<Author> sortByName(boolean ascending)
+    public List<Author> sortByName(boolean ascending)
     {
-        ArrayList<Author> Objs =  DAOFactory.getAuthorDAO().getAll();
-        Objs.sort(new AuthorNameComparator());
+        ArrayList<Author> objs =  (ArrayList<Author>)DAOFactory.getAuthorDAO().getAll();
+        objs.sort(new AuthorNameComparator());
 
         if (!ascending)
         {
-            Collections.reverse(Objs);
+            Collections.reverse(objs);
         }
-        return Objs;
+        return objs;
     }
 
     /**
@@ -83,9 +84,9 @@ public class AuthorServiceImpl implements AuthorService {
      * @param name имя автора
      * @return массив подходящих обьектов
      */
-    public ArrayList<Author> findByName(String name) {//return colection
+    public List<Author> findByName(String name) {//return colection
 
-        ArrayList<Author> allAuthor =  DAOFactory.getAuthorDAO().getAll();
+        ArrayList<Author> allAuthor =  (ArrayList<Author>)DAOFactory.getAuthorDAO().getAll();
         ArrayList<Author> findAuthor = new ArrayList<>();
         for (Author author:allAuthor)
         {

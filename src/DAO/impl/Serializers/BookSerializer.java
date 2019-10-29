@@ -18,7 +18,7 @@ public class BookSerializer implements LibrarySerializer {
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
     @Override
-    public LibraryObj ParseLibraryObj(String libraryObjAsString) {
+    public LibraryObj parseLibraryObj(String libraryObjAsString) {
         String[] bookInfo = libraryObjAsString.split(separator);
 
         if(bookInfo.length != 9)
@@ -37,7 +37,7 @@ public class BookSerializer implements LibrarySerializer {
      * @return строка содержащая файловое представление класса
      */
     @Override
-    public String FormatLibraryObj(LibraryObj libraryObj) {
+    public String formatLibraryObj(LibraryObj libraryObj) {
         if(!(libraryObj instanceof Book))
             return null;
 

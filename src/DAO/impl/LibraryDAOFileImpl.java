@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static Const.GlobalConstant.SourceFilePath;
 
@@ -24,7 +25,7 @@ import static Const.GlobalConstant.SourceFilePath;
 */
 public class LibraryDAOFileImpl implements LibraryDAO {
     /** Кеш Обьектов  {@link LibraryObj}*/
-    private ArrayList<LibraryObj> LibraryObjBuff = null;
+    private ArrayList<LibraryObj> libraryObjBuff = null;
 
     /** имя файла храняшего обьекты */
     private String fileName = SourceFilePath +"\\Library.txt";
@@ -34,8 +35,8 @@ public class LibraryDAOFileImpl implements LibraryDAO {
      * @return копия полного массива обьектов {@link LibraryObj}
      */
     @Override
-    public ArrayList<LibraryObj> getAll() {
-        ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
+    public List<LibraryObj> getAll() {
+        ArrayList<LibraryObj> allLibraryObj = (ArrayList<LibraryObj>)getAllLibraryObj();
         return (ArrayList<LibraryObj>) allLibraryObj.clone();
     }
 
@@ -43,10 +44,10 @@ public class LibraryDAOFileImpl implements LibraryDAO {
      * Обьеденят десериализованные обьект в единый список
      * @return полный массив обьектов {@link LibraryObj}
      */
-    private ArrayList<LibraryObj> getAllLibraryObj() {
+    private List<LibraryObj> getAllLibraryObj() {
         boolean needUpdate = false;
-        if(LibraryObjBuff != null)
-            return LibraryObjBuff;
+        if(libraryObjBuff != null)
+            return libraryObjBuff;
 
         ArrayList<LibraryObj> allLibraryObj = new ArrayList<>();
         BufferedReader buff = null;
@@ -64,7 +65,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
                     break;
 
                 LibrarySerializerFactory librarySerializerFactory = new LibrarySerializerFactory();
-                LibraryObj buffObj = librarySerializerFactory.ParseLibraryObj(line);
+                LibraryObj buffObj = librarySerializerFactory.parseLibraryObj(line);
                 if((buffObj.getAuthorId() != 0 ) && (DAOFactory.getAuthorDAO().getById(buffObj.getAuthorId()) == null ) )
                 {
                     buffObj.setAuthorId(0);
@@ -97,10 +98,10 @@ public class LibraryDAOFileImpl implements LibraryDAO {
             }
         }
 
-        LibraryObjBuff = allLibraryObj;
+        libraryObjBuff = allLibraryObj;
         if (needUpdate)
         {
-            saveLibraryToFile(LibraryObjBuff);
+            saveLibraryToFile(libraryObjBuff);
         }
         return allLibraryObj;
     }
@@ -112,7 +113,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
      */
     @Override
     public LibraryObj getById(Integer id) {
-        ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
+        ArrayList<LibraryObj> allLibraryObj = (ArrayList<LibraryObj>)getAllLibraryObj();
         for(LibraryObj libraryObj : allLibraryObj)
         {
             if(libraryObj.getId() == id)
@@ -129,7 +130,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
      */
     @Override
     public int update(Integer id, LibraryObj libraryObj) {
-        ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
+        ArrayList<LibraryObj> allLibraryObj = (ArrayList<LibraryObj>)getAllLibraryObj();
         for(int i = 0; i < allLibraryObj.size();i++)
         {
             if(allLibraryObj.get(i).getId() == id)
@@ -149,7 +150,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
      */
     @Override
     public boolean deleteById(Integer id) {
-        ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
+        ArrayList<LibraryObj> allLibraryObj = (ArrayList<LibraryObj>)getAllLibraryObj();
         for(int i = 0; i < allLibraryObj.size();i++)
         {
             if(allLibraryObj.get(i).getId() == id)
@@ -169,7 +170,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
      */
     @Override
     public boolean create(LibraryObj newLibraryObj) {
-        ArrayList<LibraryObj> allLibraryObj = getAllLibraryObj();
+        ArrayList<LibraryObj> allLibraryObj = (ArrayList<LibraryObj>)getAllLibraryObj();
         newLibraryObj.setId(MyPerentClass.getUniqId(new ArrayList<>(allLibraryObj)));
         allLibraryObj.add(newLibraryObj);
         saveLibraryToFile(allLibraryObj);
@@ -187,7 +188,7 @@ public class LibraryDAOFileImpl implements LibraryDAO {
             for(LibraryObj libraryObj: libraryObjs)
             {
                 LibrarySerializerFactory librarySerializerFactory = new LibrarySerializerFactory();
-                writer.write(librarySerializerFactory.FormatLibraryObj(libraryObj));
+                writer.write(librarySerializerFactory.formatLibraryObj(libraryObj));
                 writer.append('\n');
             }
             writer.flush();

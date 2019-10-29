@@ -14,5 +14,5 @@ public interface EmployerEditInterface {
      * Выводит на консоль интерфейс создания обьекта
      * @return созданный обьект
      */
-    Employer ShowEditInterface();
+    Employer showEditInterface();
 }

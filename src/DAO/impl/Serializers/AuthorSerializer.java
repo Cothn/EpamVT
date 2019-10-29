@@ -15,7 +15,7 @@ public class AuthorSerializer {
      * @param authorAsString строка содержащая файловое представление класса
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
-    public static   Author ParseAuthors(String authorAsString) {
+    public static   Author parseAuthors(String authorAsString) {
         String[] authorInfo = authorAsString.split(separator);
 
         if(authorInfo.length != 6)
@@ -31,7 +31,7 @@ public class AuthorSerializer {
      * @param author обьект для сериализации
      * @return строка содержащая файловое представление класса
      */
-    public static String FormatAuthor(Author author) {
+    public static String formatAuthor(Author author) {
 
         String result = null;
         result = "Author" + separator + author.getId() + separator + author.getName() + separator + author.getSurname();

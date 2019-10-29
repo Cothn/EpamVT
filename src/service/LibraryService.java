@@ -6,7 +6,7 @@ package service;
 
 import beans.LibraryObj;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к бизнес логике обьекта {@link LibraryObj}
@@ -30,7 +30,7 @@ public interface LibraryService {
      * Извлекает полный массив обьектов {@link LibraryObj} через DAO
      * @return полный массив обьектов {@link LibraryObj}
      */
-    ArrayList<LibraryObj> getAllLibraryObj();
+    List<LibraryObj> getAllLibraryObj();
 
     /**
      * Замещает обьект с идентификатором id на обьект LibraryObj черз DAO
@@ -44,25 +44,25 @@ public interface LibraryService {
      * @param id идентификатор удаляемого обьекта
      */
     void deleteLibraryObjById(Integer id);
-   // ArrayList<LibraryObj> sortByPagesNum();
+   // List<LibraryObj> sortByPagesNum();
     /**
      * Сортирует все обьекты по названию
      * @param ascending вид сортировки (если true то по возрастанию)
      * @return отссортированный массив
      */
-    ArrayList<LibraryObj> sortByTitle(boolean ascending);
+    List<LibraryObj> sortByTitle(boolean ascending);
 
     /**
      * Ищет обьект по имени
      * @param authorId идентификатор автора
      * @return массив подходящих обьектов
      */
-    ArrayList<LibraryObj> findByAuthor(int authorId);
+    List<LibraryObj> findByAuthor(int authorId);
 
     /**
      * Ищет обьект по имени
      * @param publishingHouseId идентификатор издательства
      * @return массив подходящих обьектов
      */
-    ArrayList<LibraryObj> findByPublishingHouse(int publishingHouseId);
+    List<LibraryObj> findByPublishingHouse(int publishingHouseId);
 }

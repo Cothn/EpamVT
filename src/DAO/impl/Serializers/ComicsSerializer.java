@@ -17,7 +17,7 @@ public class ComicsSerializer implements LibrarySerializer{
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
     @Override
-    public LibraryObj ParseLibraryObj(String libraryObjAsString) {
+    public LibraryObj parseLibraryObj(String libraryObjAsString) {
         String[] comicsInfo = libraryObjAsString.split(separator);
 
         if(comicsInfo.length != 9)
@@ -35,7 +35,7 @@ public class ComicsSerializer implements LibrarySerializer{
      * @return строка содержащая файловое представление класса
      */
     @Override
-    public String FormatLibraryObj(LibraryObj libraryObj) {
+    public String formatLibraryObj(LibraryObj libraryObj) {
         if(!(libraryObj instanceof Comics))
             return null;
 

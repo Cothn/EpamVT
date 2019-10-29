@@ -6,7 +6,7 @@ package service;
 
 import beans.PublishingHouse;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к бизнес логике обьекта {@link PublishingHouse}
@@ -30,7 +30,7 @@ public interface PublishingHouseService {
      * Извлекает полный массив обьектов {@link PublishingHouse}
      * @return полный массив обьектов {@link PublishingHouse}
      */
-    ArrayList<PublishingHouse> getAllPublishingHouse();
+    List<PublishingHouse> getAllPublishingHouse();
 
     /**
      * Замещает обьект с идентификатором id на обьект publishingHouse черз DAO
@@ -50,14 +50,14 @@ public interface PublishingHouseService {
      * @param ascending вид сортировки (если true то по возрастанию)
      * @return отссортированный массив
      */
-    ArrayList<PublishingHouse> sortByTitle(boolean ascending);
+    List<PublishingHouse> sortByTitle(boolean ascending);
 
     /**
      * Ищет обьект по названию
      * @param title название издательства
      * @return массив подходящих обьектов
      */
-    ArrayList<PublishingHouse> findByTitle(String title);
+    List<PublishingHouse> findByTitle(String title);
 
 
 

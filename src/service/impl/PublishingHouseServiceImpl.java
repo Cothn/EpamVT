@@ -11,6 +11,7 @@ import service.PublishingHouseService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Хранит методы работы c обьектами {@link PublishingHouse}
@@ -38,7 +39,7 @@ public class PublishingHouseServiceImpl  implements PublishingHouseService {
      * Извлекает полный массив обьектов {@link PublishingHouse} через DAO
      * @return полный массив обьектов {@link PublishingHouse}
      */
-    public ArrayList<PublishingHouse> getAllPublishingHouse() {
+    public List<PublishingHouse> getAllPublishingHouse() {
 
         return DAOFactory.getPublishingHouseDAO().getAll();
     }
@@ -66,15 +67,15 @@ public class PublishingHouseServiceImpl  implements PublishingHouseService {
      * @param ascending вид сортировки (если true то по возрастанию)
      * @return отссортированный массив
      */
-    public ArrayList<PublishingHouse> sortByTitle(boolean ascending)
+    public List<PublishingHouse> sortByTitle(boolean ascending)
     {
-        ArrayList<PublishingHouse> libraryObj =  DAOFactory.getPublishingHouseDAO().getAll();
-        libraryObj.sort(new PublishingHouseTitleComparator());
+        ArrayList<PublishingHouse> all =  (ArrayList<PublishingHouse>)DAOFactory.getPublishingHouseDAO().getAll();
+        all.sort(new PublishingHouseTitleComparator());
         if (!ascending)
         {
-            Collections.reverse(libraryObj);
+            Collections.reverse(all);
         }
-        return libraryObj;
+        return all;
     }
 
     /**
@@ -82,9 +83,9 @@ public class PublishingHouseServiceImpl  implements PublishingHouseService {
      * @param title название издательства
      * @return массив подходящих обьектов
      */
-    public ArrayList<PublishingHouse> findByTitle(String title) {
+    public List<PublishingHouse> findByTitle(String title) {
 
-        ArrayList<PublishingHouse> allPublishingHouse =  DAOFactory.getPublishingHouseDAO().getAll();
+        ArrayList<PublishingHouse> allPublishingHouse =  (ArrayList<PublishingHouse>)DAOFactory.getPublishingHouseDAO().getAll();
         ArrayList<PublishingHouse> findPublishingHouse = new ArrayList<>();
         for (PublishingHouse publishingHouse:allPublishingHouse)
         {
@@ -95,7 +96,7 @@ public class PublishingHouseServiceImpl  implements PublishingHouseService {
         return findPublishingHouse;
     }
 
-    static class PublishingHouseTitleComparator implements Comparator<PublishingHouse> {
+    private static class PublishingHouseTitleComparator implements Comparator<PublishingHouse> {
 
         public int compare(PublishingHouse f, PublishingHouse t){
             return   f.getTitle().compareTo(t.getTitle());

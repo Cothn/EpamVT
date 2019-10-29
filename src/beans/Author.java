@@ -75,7 +75,7 @@ public class Author extends MyPerentClass{
      * @return Строковое представление описания автора
      */
     @Override
-    public String StringView() {
+    public String stringView() {
         String result;
         result = String.format(" id: %-10d| ",this.getId());
         result += String.format(" Name: %-13s|  Surname: %-20s| birthDate: %-10s|  description: %-70s|", this.name, this.surname, this.birthDate, this.Description);

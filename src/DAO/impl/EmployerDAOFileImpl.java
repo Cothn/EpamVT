@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static Const.GlobalConstant.SourceFilePath;
 
@@ -28,8 +29,8 @@ public class EmployerDAOFileImpl implements EmployerDAO {
      * Передает копию полного массива обьектов {@link Employer} за пределы класса
      * @return копия полного массива обьектов {@link Employer}
      */
-    public ArrayList<Employer> getAll() {
-        ArrayList<Employer> allEmployer = getAllEmployer();
+    public List<Employer> getAll() {
+        ArrayList<Employer> allEmployer = (ArrayList<Employer>)getAllEmployer();
         return (ArrayList<Employer>) allEmployer.clone();
     }
 
@@ -37,8 +38,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
      * Обьеденят десериализованные обьект в единый список
      * @return полный массив обьектов {@link Employer}
      */
-    private ArrayList<Employer> getAllEmployer() {
-        boolean needUpdate = false;
+    private List<Employer> getAllEmployer() {
         if(employersBuff != null)
             return employersBuff;
 
@@ -57,7 +57,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
                 if ((line == null) || (line.equals("")))
                     break;
 
-                allEmployer.add(EmployerSerializer.ParseEmployer(line));
+                allEmployer.add(EmployerSerializer.parseEmployer(line));
                 //System.out.println(line);
             }
         }
@@ -88,7 +88,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
      * @return найденный обьект или null
      */
     public Employer getById(Integer id) {
-        ArrayList<Employer> allEmployer = getAllEmployer();
+        ArrayList<Employer> allEmployer = (ArrayList<Employer>)getAllEmployer();
         for(Employer libraryObj : allEmployer)
         {
             if(libraryObj.getId() == id)
@@ -104,7 +104,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
      * @return номер обьекта в списке или 0 если обьекта с идентификатором id  не существует
      */
     public int update(Integer id, Employer employer) {
-        ArrayList<Employer> allEmployer = getAllEmployer();
+        ArrayList<Employer> allEmployer = (ArrayList<Employer>)getAllEmployer();
         for(int i = 0; i < allEmployer.size();i++)
         {
             if(allEmployer.get(i).getId() == id)
@@ -123,7 +123,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
      * @return true если удаление прошло успешно иначе false
      */
     public boolean deleteById(Integer id) {
-        ArrayList<Employer> allEmployer = getAllEmployer();
+        ArrayList<Employer> allEmployer = (ArrayList<Employer>)getAllEmployer();
         for(int i = 0; i < allEmployer.size();i++)
         {
             if(allEmployer.get(i).getId() == id)
@@ -143,7 +143,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
      */
     public boolean create(Employer newEmployer) {
 
-        ArrayList<Employer> allEmployer = getAllEmployer();
+        ArrayList<Employer> allEmployer = (ArrayList<Employer>)getAllEmployer();
         newEmployer.setId(MyPerentClass.getUniqId(new ArrayList<>(allEmployer)));
         allEmployer.add(newEmployer);
         saveEmployersToFile(allEmployer);
@@ -160,7 +160,7 @@ public class EmployerDAOFileImpl implements EmployerDAO {
         {
             for(Employer employer: employers)
             {
-                writer.write(EmployerSerializer.FormatEmployer(employer));
+                writer.write(EmployerSerializer.formatEmployer(employer));
                 writer.append('\n');
             }
             writer.flush();

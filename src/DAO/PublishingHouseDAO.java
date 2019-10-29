@@ -7,6 +7,7 @@ package DAO;
 import beans.PublishingHouse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к базе даных хранящей обьекты {@link PublishingHouse}
@@ -16,7 +17,7 @@ public interface PublishingHouseDAO {
      * Передает полный массив обьектов {@link PublishingHouse}
      * @return полный массив обьектов {@link PublishingHouse}
      */
-    ArrayList<PublishingHouse> getAll();
+    List<PublishingHouse> getAll();
 
     /**
      * Ищет обьект по его идентификатору

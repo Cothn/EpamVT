@@ -18,7 +18,7 @@ public class PublishingHouseEditInterfaceImpl implements Interface.PublishingHou
      * @return созданный обьект
      */
     @Override
-    public PublishingHouse ShowEditInterface() {
+    public PublishingHouse showEditInterface() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter title:");
         String title = scanner.nextLine();

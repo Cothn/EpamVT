@@ -14,12 +14,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static Const.GlobalConstant.SourceFilePath;
 
 public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
     /** Кеш Обьектов  {@link PublishingHouse}*/
-    private ArrayList<PublishingHouse> PublishingHouseBuff = null;
+    private ArrayList<PublishingHouse> publishingHouseBuff = null;
 
     /** имя файла храняшего обьекты */
     private final String fileName = SourceFilePath +"\\PublishingHouse.txt";
@@ -29,8 +30,8 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
      * @return копия полного массива обьектов {@link PublishingHouse}
      */
     @Override
-    public ArrayList<PublishingHouse> getAll() {
-        ArrayList<PublishingHouse> allPublishingHouse = getAllPublishingHouse();
+    public List<PublishingHouse> getAll() {
+        ArrayList<PublishingHouse> allPublishingHouse = (ArrayList<PublishingHouse>)getAllPublishingHouse();
         return (ArrayList<PublishingHouse>) allPublishingHouse.clone();
     }
 
@@ -38,9 +39,9 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
      * Обьеденят десериализованные обьект в единый список
      * @return полный массив обьектов {@link PublishingHouse}
      */
-    private ArrayList<PublishingHouse> getAllPublishingHouse() {
-        if(PublishingHouseBuff != null)
-            return PublishingHouseBuff;
+    private List<PublishingHouse> getAllPublishingHouse() {
+        if(publishingHouseBuff != null)
+            return publishingHouseBuff;
 
         ArrayList<PublishingHouse> allPublishingHouse = new ArrayList<>();
         BufferedReader buff = null;
@@ -56,7 +57,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
                 if ((line == null) || (line.equals("")))
                     break;
 
-                allPublishingHouse.add(PublishingHouseSerializer.ParsePublishingHouse(line));
+                allPublishingHouse.add(PublishingHouseSerializer.parsePublishingHouse(line));
                 //System.out.println(line);
             }
         }
@@ -76,7 +77,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
                 e1.printStackTrace();
             }
         }
-        PublishingHouseBuff = allPublishingHouse;
+        publishingHouseBuff = allPublishingHouse;
         return allPublishingHouse;
     }
 
@@ -87,7 +88,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
      */
     @Override
     public PublishingHouse getById(Integer id) {
-        ArrayList<PublishingHouse> allPublishingHouse = getAllPublishingHouse();
+        ArrayList<PublishingHouse> allPublishingHouse = (ArrayList<PublishingHouse>)getAllPublishingHouse();
         for(PublishingHouse publishingHouse : allPublishingHouse)
         {
             if(publishingHouse.getId() == id)
@@ -104,7 +105,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
      */
     @Override
     public int update(Integer id, PublishingHouse publishingHouse) {
-        ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
+        ArrayList<PublishingHouse> AllPublishingHouse = (ArrayList<PublishingHouse>)getAllPublishingHouse();
         for(int i = 0; i < AllPublishingHouse.size();i++)
         {
             if(AllPublishingHouse.get(i).getId() == id)
@@ -124,7 +125,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
      */
     @Override
     public boolean deleteById(Integer id) {
-        ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
+        ArrayList<PublishingHouse> AllPublishingHouse = (ArrayList<PublishingHouse>)getAllPublishingHouse();
         for(int i = 0; i < AllPublishingHouse.size();i++)
         {
             if(AllPublishingHouse.get(i).getId() == id)
@@ -144,7 +145,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
      */
     @Override
     public boolean create(PublishingHouse newPublishingHouse) {
-        ArrayList<PublishingHouse> AllPublishingHouse = getAllPublishingHouse();
+        ArrayList<PublishingHouse> AllPublishingHouse = (ArrayList<PublishingHouse>)getAllPublishingHouse();
         newPublishingHouse.setId(MyPerentClass.getUniqId(new ArrayList<>(AllPublishingHouse)));
         AllPublishingHouse.add(newPublishingHouse);
         savePublishingHouseToFile(AllPublishingHouse);
@@ -161,7 +162,7 @@ public class PublishingHouseDAOFileImpl implements PublishingHouseDAO {
         {
             for(PublishingHouse publishingHouse: publishingHouses)
             {
-                writer.write(PublishingHouseSerializer.FormatPublishingHouse(publishingHouse));
+                writer.write(PublishingHouseSerializer.formatPublishingHouse(publishingHouse));
                 writer.append('\n');
             }
             writer.flush();

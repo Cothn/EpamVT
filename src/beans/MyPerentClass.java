@@ -56,7 +56,7 @@ public class MyPerentClass {
         return uniqId;
     }
 
-    public String StringView() {
+    public String stringView() {
         return String.format("id: %-10d", this.getId());
     }
 }

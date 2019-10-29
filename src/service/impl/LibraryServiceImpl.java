@@ -11,6 +11,7 @@ import service.LibraryService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Хранит методы работы c обьектами {@link LibraryObj}
@@ -41,7 +42,7 @@ public class LibraryServiceImpl implements LibraryService {
      * @return полный массив обьектов {@link LibraryObj}
      */
     @Override
-    public ArrayList<LibraryObj> getAllLibraryObj() {
+    public List<LibraryObj> getAllLibraryObj() {
 
         return DAOFactory.getLibraryDAO().getAll();
     }
@@ -80,9 +81,9 @@ public class LibraryServiceImpl implements LibraryService {
      * @return отссортированный массив
      */
     @Override
-    public ArrayList<LibraryObj> sortByTitle(boolean ascending)
+    public List<LibraryObj> sortByTitle(boolean ascending)
     {
-        ArrayList<LibraryObj> allLibraryObj =  DAOFactory.getLibraryDAO().getAll();
+        ArrayList<LibraryObj> allLibraryObj =  (ArrayList<LibraryObj>)DAOFactory.getLibraryDAO().getAll();
         allLibraryObj.sort(new LibraryObjTitleComparator());
         if (!ascending)
         {
@@ -97,9 +98,9 @@ public class LibraryServiceImpl implements LibraryService {
      * @return массив подходящих обьектов
      */
     @Override
-    public ArrayList<LibraryObj> findByAuthor(int authorId) {
+    public List<LibraryObj> findByAuthor(int authorId) {
 
-        ArrayList<LibraryObj> allLibraryObj =  DAOFactory.getLibraryDAO().getAll();
+        ArrayList<LibraryObj> allLibraryObj =  (ArrayList<LibraryObj>)DAOFactory.getLibraryDAO().getAll();
         ArrayList<LibraryObj> findLibraryObj = new ArrayList<>();
         for (LibraryObj libraryObj:allLibraryObj)
         {
@@ -116,9 +117,9 @@ public class LibraryServiceImpl implements LibraryService {
      * @return массив подходящих обьектов
      */
     @Override
-    public ArrayList<LibraryObj> findByPublishingHouse(int publishingHouseId) {
+    public List<LibraryObj> findByPublishingHouse(int publishingHouseId) {
 
-        ArrayList<LibraryObj> allLibraryObj =  DAOFactory.getLibraryDAO().getAll();
+        ArrayList<LibraryObj> allLibraryObj =  (ArrayList<LibraryObj>)DAOFactory.getLibraryDAO().getAll();
         ArrayList<LibraryObj> findLibraryObj = new ArrayList<>();
         for (LibraryObj libraryObj:allLibraryObj)
         {
@@ -142,7 +143,7 @@ public class LibraryServiceImpl implements LibraryService {
         }
     }
 */
-    static class LibraryObjTitleComparator implements Comparator<LibraryObj>{
+    private static class LibraryObjTitleComparator implements Comparator<LibraryObj>{
 
         public int compare(LibraryObj f, LibraryObj t){
 

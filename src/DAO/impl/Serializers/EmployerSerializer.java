@@ -15,7 +15,7 @@ public class EmployerSerializer {
      * @param employerAsString строка содержащая файловое представление класса
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
-    public static   Employer ParseEmployer(String employerAsString) {
+    public static   Employer parseEmployer(String employerAsString) {
         String[] employerInfo = employerAsString.split(separator);
 
         if(employerInfo.length != 6)
@@ -31,7 +31,7 @@ public class EmployerSerializer {
      * @param employer обьект для сериализации
      * @return строка содержащая файловое представление класса
      */
-    public static String FormatEmployer(Employer employer) {
+    public static String formatEmployer(Employer employer) {
 
         String result;
         result = "Employer" + separator + employer.getId() + separator + employer.getName() + separator + employer.getSurname();

@@ -54,7 +54,7 @@ public class Article extends LibraryObj {
      * @return Строковое представление описания статьи
      */
     @Override
-    public String StringView() {
+    public String stringView() {
 
         String result;
         result = String.format("Article| id: %-10d| ",this.getId());

@@ -44,7 +44,7 @@ public class Book extends LibraryObj{
      * @return Строковое представление описания книги
      */
     @Override
-    public String StringView() {
+    public String stringView() {
 
         String result;
         result = String.format("book   | id: %-10d| ",this.getId());

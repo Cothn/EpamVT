@@ -12,12 +12,12 @@ public interface LibrarySerializer {
      * @param libraryObjAsString строка содержащая файловое представление класса
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
-    LibraryObj ParseLibraryObj(String libraryObjAsString);
+    LibraryObj parseLibraryObj(String libraryObjAsString);
 
     /**
      * Генерирует строку на основе класса libraryObj
      * @param libraryObj обьект для сериализации
      * @return строка содержащая файловое представление класса
      */
-    String FormatLibraryObj(LibraryObj libraryObj);
+    String formatLibraryObj(LibraryObj libraryObj);
 }

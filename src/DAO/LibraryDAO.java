@@ -7,6 +7,7 @@ package DAO;
 import beans.LibraryObj;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к базе даных хранящей обьекты {@link LibraryObj}
@@ -16,7 +17,7 @@ public interface LibraryDAO {
      * Передает полный массив обьектов {@link LibraryObj}
      * @return полный массив обьектов {@link LibraryObj}
      */
-    ArrayList<LibraryObj> getAll();
+    List<LibraryObj> getAll();
 
     /**
      * Ищет обьект по его идентификатору

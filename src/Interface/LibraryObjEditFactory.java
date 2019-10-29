@@ -33,7 +33,7 @@ public class LibraryObjEditFactory {
      * @param LibraryObjType тип обьекта
      * @return интерфейс создания обьекта
      */
-    public static LibraryObjEditInterface GetEditInterface(String LibraryObjType)
+    public static LibraryObjEditInterface getEditInterface(String LibraryObjType)
     {
         return map.get(LibraryObjType);
     }

@@ -71,7 +71,7 @@ public class PublishingHouse extends MyPerentClass{
      * @return Строковое представление описания издательства
      */
     @Override
-    public String StringView() {
+    public String stringView() {
 
         String result;
         result = String.format(" id: %-10d| ",this.getId());

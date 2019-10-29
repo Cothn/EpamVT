@@ -17,7 +17,7 @@ public class ArticleSerializer implements LibrarySerializer {
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
     @Override
-    public LibraryObj ParseLibraryObj(String libraryObjAsString) {
+    public LibraryObj parseLibraryObj(String libraryObjAsString) {
         String[] articleInfo = libraryObjAsString.split(separator);
 
         if(articleInfo.length != 9)
@@ -36,7 +36,7 @@ public class ArticleSerializer implements LibrarySerializer {
      * @return строка содержащая файловое представление класса
      */
     @Override
-    public String FormatLibraryObj(LibraryObj libraryObj) {
+    public String formatLibraryObj(LibraryObj libraryObj) {
 
         if(!(libraryObj instanceof Article))
             return null;

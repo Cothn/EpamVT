@@ -18,7 +18,7 @@ public class EmployerEditInterfaceImpl implements Interface.EmployerEditInterfac
      * @return созданный обьект
      */
     @Override
-    public Employer ShowEditInterface() {
+    public Employer showEditInterface() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name:");
         String name = scanner.nextLine();

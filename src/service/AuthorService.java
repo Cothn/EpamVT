@@ -6,7 +6,7 @@ package service;
 
 import beans.Author;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Интерфейс доступа к бизнес логике обьекта {@link Author}
@@ -30,7 +30,7 @@ public interface AuthorService {
      * Извлекает полный массив обьектов {@link Author}
      * @return полный массив обьектов {@link Author}
      */
-    ArrayList<Author> getAllAuthor() ;
+    List<Author> getAllAuthor() ;
 
     /**
      * Замещает обьект с идентификатором id на обьект author
@@ -50,13 +50,13 @@ public interface AuthorService {
      * @param ascending вид сортировки (если true то по возрастанию)
      * @return отссортированный массив
      */
-    ArrayList<Author> sortByName(boolean ascending);
+    List<Author> sortByName(boolean ascending);
 
     /**
      * Ищет обьект по имени
      * @param name имя автора
      * @return массив подходящих обьектов
      */
-    ArrayList<Author> findByName(String name);
+    List<Author> findByName(String name);
 
 }

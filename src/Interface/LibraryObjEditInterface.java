@@ -14,5 +14,5 @@ public interface LibraryObjEditInterface {
      * Выводит на консоль интерфейс создания обьекта
      * @return созданный обьект
      */
-    LibraryObj ShowEditInterface();
+    LibraryObj showEditInterface();
 }

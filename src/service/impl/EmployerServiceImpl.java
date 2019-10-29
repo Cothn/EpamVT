@@ -11,6 +11,7 @@ import service.EmployerService;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Хранит методы работы c обьектами {@link Employer}
@@ -38,7 +39,7 @@ public class EmployerServiceImpl implements EmployerService {
      * Извлекает полный массив обьектов {@link Employer} через DAO
      * @return полный массив обьектов {@link Employer}
      */
-    public ArrayList<Employer> getAllEmployer() {
+    public List<Employer> getAllEmployer() {
 
         return DAOFactory.getEmployerDAO().getAll();
     }
@@ -66,15 +67,15 @@ public class EmployerServiceImpl implements EmployerService {
      * @param ascending вид сортировки (если true то по возрастанию)
      * @return отссортированный массив
      */
-    public ArrayList<Employer> sortByName(boolean ascending)
+    public List<Employer> sortByName(boolean ascending)
     {
-        ArrayList<Employer> Objs =  DAOFactory.getEmployerDAO().getAll();
-        Objs.sort(new EmployerNameComparator());
+        ArrayList<Employer> objs =  (ArrayList<Employer>)DAOFactory.getEmployerDAO().getAll();
+        objs.sort(new EmployerNameComparator());
         if (!ascending)
         {
-            Collections.reverse(Objs);
+            Collections.reverse(objs);
         }
-        return Objs;
+        return objs;
     }
 
     /**
@@ -82,9 +83,9 @@ public class EmployerServiceImpl implements EmployerService {
      * @param position должность автора
      * @return массив подходящих обьектов
      */
-    public ArrayList<Employer> findByPosition(String position) {
+    public List<Employer> findByPosition(String position) {
 
-        ArrayList<Employer> allEmployer =  DAOFactory.getEmployerDAO().getAll();
+        ArrayList<Employer> allEmployer =  (ArrayList<Employer>)DAOFactory.getEmployerDAO().getAll();
         ArrayList<Employer> findEmployer = new ArrayList<>();
         for (Employer employer:allEmployer)
         {
@@ -95,7 +96,7 @@ public class EmployerServiceImpl implements EmployerService {
         return findEmployer;
     }
 
-    static class EmployerNameComparator implements Comparator<Employer> {
+    private static class EmployerNameComparator implements Comparator<Employer> {
 
         public int compare(Employer f, Employer t){
             int result =  f.getName().compareTo(t.getName());

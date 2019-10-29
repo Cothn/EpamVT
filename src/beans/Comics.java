@@ -37,7 +37,7 @@ public class Comics extends  LibraryObj{
      * @return Строковое представление описания комикса
      */
     @Override
-    public String StringView() {
+    public String stringView() {
 
         String result;
         result = String.format("Comics | id: %-10d| ",this.getId());

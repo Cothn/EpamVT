@@ -15,7 +15,7 @@ public class PublishingHouseSerializer {
      * @param publishingHouseAsString строка содержащая файловое представление класса
      * @return класс сгенирированный на основе строки libraryObjAsString
      */
-    public static PublishingHouse ParsePublishingHouse(String publishingHouseAsString) {
+    public static PublishingHouse parsePublishingHouse(String publishingHouseAsString) {
         String[] publishingHouseInfo = publishingHouseAsString.split(separator);
 
         if(publishingHouseInfo.length != 7)
@@ -31,7 +31,7 @@ public class PublishingHouseSerializer {
      * @param publishingHouse обьект для сериализации
      * @return строка содержащая файловое представление класса
      */
-    public static String FormatPublishingHouse(PublishingHouse publishingHouse) {
+    public static String formatPublishingHouse(PublishingHouse publishingHouse) {
 
         String result;
         result = "PublishingHouse" + separator + publishingHouse.getId() + separator + publishingHouse.getTitle() + separator + publishingHouse.getAddress() + separator;
