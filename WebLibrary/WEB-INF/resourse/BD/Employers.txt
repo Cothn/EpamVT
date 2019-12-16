@@ -1,0 +1,4 @@
+Employer#120618944#Alex#Abramenko#00009876543#Admin
+Employer#302114749#Vsevolod#Grinchik#000000000666#SuperAdmin
+Employer#746761662#Ilya#Oleshko#124124124#Admin
+Employer#81308493#Roman#Shyliak#123414124#Programmer

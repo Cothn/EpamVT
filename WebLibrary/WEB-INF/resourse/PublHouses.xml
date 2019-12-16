@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<publhouses xmlns="http://www.cothn.org/publhouses/">
+    <Publhouse>
+        <id>175</id>
+        <title>Best Book</title>
+        <address>Claus</address>
+        <phone>+213123</phone>
+        <foundationdate>19-12-16</foundationdate>
+        <description>qwerty</description>
+    </Publhouse>
+    <Publhouse>
+        <id>22</id>
+        <title>Santa Booker</title>
+        <address>Claus</address>
+        <phone>+213123</phone>
+        <foundationdate>19-12-16</foundationdate>
+        <description>qwerty</description>
+    </Publhouse>
+    <Publhouse>
+        <id>127</id>
+        <title>SantaBook</title>
+        <address>Claus</address>
+        <phone>+213123</phone>
+        <foundationdate>19-12-16</foundationdate>
+        <description>qwerty</description>
+    </Publhouse>
+</publhouses>

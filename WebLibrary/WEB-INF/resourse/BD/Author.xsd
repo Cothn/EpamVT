@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.cothn.org/authors/"
+           xmlns:aut="http://www.cothn.org/authors/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="id" type="xs:integer"/>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="surname" type="xs:string"/>
+  <xs:element name="birthdate" type="xs:string"/>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="Author">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="aut:id"/>
+        <xs:element ref="aut:name"/>
+        <xs:element ref="aut:surname"/>
+        <xs:element ref="aut:birthdate"/>
+        <xs:element ref="aut:description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="authors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="aut:Author" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

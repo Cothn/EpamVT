@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<authors xmlns="http://www.cothn.org/authors/">
+    <Author>
+        <id>171</id>
+        <name>Santa</name>
+        <surname>Claus</surname>
+        <birthdate>19-12-19</birthdate>
+        <description>HoHOho</description>
+    </Author>
+    <Author>
+        <id>19</id>
+        <name>Santa</name>
+        <surname>Claus</surname>
+        <birthdate>19-12-19</birthdate>
+        <description>HoHOho</description>
+    </Author>
+    <Author>
+        <id>124</id>
+        <name>Mark</name>
+        <surname>Zuckerberg</surname>
+        <birthdate>19-12-19</birthdate>
+        <description>First</description>
+    </Author>
+</authors>

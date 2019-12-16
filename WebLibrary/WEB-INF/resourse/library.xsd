@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.cothn.org/library/"
+           xmlns:lib="http://www.cothn.org/library/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="id" type="xs:integer"/>
+<xs:element name="authid" type="xs:integer"/>
+<xs:element name="title" type="xs:string"/>
+<xs:element name="publhouseid" type="xs:integer"/>
+<xs:element name="pagecount" type="xs:integer"/>
+<xs:element name="description" type="xs:string"/>
+<xs:element name="drawing" type="xs:string"/>
+<xs:element name="universe" type="xs:string"/>
+<xs:element name="topic" type="xs:string"/>
+<xs:element name="subject" type="xs:string"/>
+<xs:element name="genre" type="xs:string"/>
+<xs:element name="ISBN" type="xs:string"/>
+<xs:element name="Comics">
+  <xs:complexType >
+    <xs:sequence>
+      <xs:element ref="lib:id"/>
+      <xs:element ref="lib:authid"/>
+      <xs:element ref="lib:title"/>
+      <xs:element ref="lib:publhouseid"/>
+      <xs:element ref="lib:pagecount"/>
+      <xs:element ref="lib:description"/>
+      <xs:element ref="lib:drawing"/>
+      <xs:element ref="lib:universe"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+<xs:element name="Article">
+  <xs:complexType >
+    <xs:sequence>
+      <xs:element ref="lib:id"/>
+      <xs:element ref="lib:authid"/>
+      <xs:element ref="lib:title"/>
+      <xs:element ref="lib:publhouseid"/>
+      <xs:element ref="lib:pagecount"/>
+      <xs:element ref="lib:description"/>
+      <xs:element ref="lib:topic"/>
+      <xs:element ref="lib:subject"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+<xs:element name="Book">
+  <xs:complexType >
+    <xs:sequence>
+      <xs:element ref="lib:id"/>
+      <xs:element ref="lib:authid"/>
+      <xs:element ref="lib:title"/>
+      <xs:element ref="lib:publhouseid"/>
+      <xs:element ref="lib:pagecount"/>
+      <xs:element ref="lib:description"/>
+      <xs:element ref="lib:genre"/>
+      <xs:element ref="lib:ISBN"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+<xs:group name="libgroup" >
+  <xs:choice>
+    <xs:element ref="lib:Comics" />
+    <xs:element ref="lib:Article" />
+    <xs:element ref="lib:Book" />
+  </xs:choice>
+</xs:group>
+<xs:element name="library" >
+  <xs:complexType>
+    <xs:sequence>
+      <xs:group ref="lib:libgroup" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+</xs:schema>
