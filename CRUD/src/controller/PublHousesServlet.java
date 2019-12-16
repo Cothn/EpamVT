@@ -30,7 +30,16 @@ public class PublHousesServlet extends HttpServlet {
             System.out.println(publHouses);
 
             writer.println("<h2>Publishing houses</h2>");
-            writer.println("<table>");
+            writer.println("<table style=\" border-style: solid; border-width:1px;\">");
+
+            writer.println("<tr>");
+            writer.println("<td>" + "<b>" +  "Id" + "</b>" +  "</td>");
+            writer.println("<td>" + "<b>" +  "title" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" +  "address" + "</b>" +"</td>");
+            writer.println("<td>" + "<b>" + "phone" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" +  "foundation date" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" +  "description" + "</b>" + "</td>");
+            writer.println("</tr>");
             for (PublishingHouse publHouse: publHouses)
             {
                 System.out.println(publHouse);

@@ -5,23 +5,23 @@
         <title>Best Book</title>
         <address>Claus</address>
         <phone>+213123</phone>
-        <foundationdate>19-12-16</foundationdate>
-        <description>qwerty</description>
+        <foundationdate>19:12:16</foundationdate>
+        <description>qwerty1</description>
     </Publhouse>
     <Publhouse>
         <id>22</id>
         <title>Santa Booker</title>
         <address>Claus</address>
         <phone>+213123</phone>
-        <foundationdate>19-12-16</foundationdate>
-        <description>qwerty</description>
+        <foundationdate>19:12:16</foundationdate>
+        <description>qwerty2</description>
     </Publhouse>
     <Publhouse>
         <id>127</id>
         <title>SantaBook</title>
         <address>Claus</address>
         <phone>+213123</phone>
-        <foundationdate>19-12-16</foundationdate>
-        <description>qwerty</description>
+        <foundationdate>19:12:16</foundationdate>
+        <description>qwerty3</description>
     </Publhouse>
 </publhouses>

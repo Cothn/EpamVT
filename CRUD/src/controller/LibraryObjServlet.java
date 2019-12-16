@@ -35,7 +35,17 @@ public class LibraryObjServlet extends HttpServlet {
             System.out.println(libraryObjs);
 
             writer.println("<h2>Library</h2>");
-            writer.println("<table>");
+            writer.println("<table style=\" border-style: solid; border-width:1px;\">");
+
+            writer.println("<tr>");
+            writer.println("<td>" + "<b>" +  "Id" + "</b>" +  "</td>");
+            writer.println("<td>" + "<b>" +  "Author Id" + "</b>" +  "</td>");
+            writer.println("<td>" + "<b>" +  "title" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" +  "Publishing House Id" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" +  "pages count" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" +  "description" + "</b>" +  "</td>");
+            writer.println("<td>" + "<b>" +  "Type" + "</b>" +  "</td>");
+            writer.println("</tr>");
             for (LibraryObj libraryObj: libraryObjs)
             {
                 System.out.println(libraryObj);
@@ -49,16 +59,19 @@ public class LibraryObjServlet extends HttpServlet {
                 writer.println("<td>" + libraryObj.getDescription() + "</td>");
 
                 if(libraryObj instanceof Comics){
-                    writer.println("<td>" + ((Comics) libraryObj).getDrawing() + "</td>");
-                    writer.println("<td>" + ((Comics) libraryObj).getUniverse() + "</td>");
+                    writer.println("<td>" +"comics" + "</td>");
+                    writer.println("<td> drawing:" + ((Comics) libraryObj).getDrawing() + "</td>");
+                    writer.println("<td> universe:" + ((Comics) libraryObj).getUniverse() + "</td>");
                 }
                 else if(libraryObj instanceof Book){
-                    writer.println("<td>" + ((Book) libraryObj).getGenre() + "</td>");
-                    writer.println("<td>" + ((Book) libraryObj).getISBN() + "</td>");
+                    writer.println("<td>" +"book" + "</td>");
+                    writer.println("<td> genre:" + ((Book) libraryObj).getGenre() + "</td>");
+                    writer.println("<td> ISBN:" + ((Book) libraryObj).getISBN() + "</td>");
                 }
                 else if(libraryObj instanceof Article){
-                    writer.println("<td>" + ((Article) libraryObj).getTopic() + "</td>");
-                    writer.println("<td>" + ((Article) libraryObj).getSubject() + "</td>");
+                    writer.println("<td>" +"article" + "</td>");
+                    writer.println("<td> topic:" + ((Article) libraryObj).getTopic() + "</td>");
+                    writer.println("<td> subject:" + ((Article) libraryObj).getSubject() + "</td>");
                 }
                 writer.println("</tr>");
             }

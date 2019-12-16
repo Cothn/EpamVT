@@ -8,7 +8,7 @@
         <param name="maxFileSize" value="100KB" />
         <param name="maxBackupIndex" value="10" />
         <!-- For Tomcat -->
-        <param name="file" value="D:/RepositHub/VT2019/CRUD/logs/CRUID.log" />
+        <param name="file" value="D:/RepositHub/VT/CRUD/logs/CRUID.log" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"
                    value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />

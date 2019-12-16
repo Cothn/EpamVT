@@ -45,6 +45,7 @@ public class PublHouseDAO_Dom_Impl implements PublishingHouseDAO {
                 publhouse.setTitle(getChild(publhouseElement,"title").getTextContent().trim());
                 publhouse.setAddress(getChild(publhouseElement,"address").getTextContent().trim());
                 publhouse.setPhone((getChild(publhouseElement,"phone").getTextContent().trim()));
+                publhouse.setFoundationDate((getChild(publhouseElement,"foundationdate").getTextContent().trim()));
                 publhouse.setDescription(getChild(publhouseElement,"description").getTextContent().trim());
                 publhouses.add(publhouse);
             }

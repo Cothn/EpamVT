@@ -32,13 +32,20 @@ public class AuthorServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
 
         try {
-
             List<Author> authors = null;
             AuthorService service = new AuthorServiceImpl();
             authors = service.getAllAuthor();
             LOG.log(Level.DEBUG,"authors:"+authors);
             writer.println("<h2>Authors</h2>");
-            writer.println("<table>");
+            writer.println("<table style=\" border-style: solid; border-width:1px;\">");
+
+            writer.println("<tr>");
+            writer.println("<td>" + "<b>" + "Id" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" + "name" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" + "surname" + "</b>" + "</td>");
+            writer.println("<td>" + "<b>" + "birth date" + "</b>" +"</td>");
+            writer.println("<td>" + "<b>" + "description" + "</b>" + "</td>");
+            writer.println("</tr>");
             for (Author author: authors)
             {
                 LOG.log(Level.INFO,"for");

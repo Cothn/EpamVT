@@ -9,8 +9,16 @@
 <title>employers</title>
 </head>
 <body>
-	<h1>employers</h1>
-<table style=" border-style: solid; border-width:1px; width: 600px; border-collapse: collapse;">
+	<h1>Employers table</h1>
+<table style=" border-style: solid; border-width:1px; width: 600px;">
+
+	<tr>
+		<td><b>Id</b></td>
+		<td><b>name</b></td>
+		<td><b>surname</b></td>
+		<td><b>phone</b></td>
+		<td><b>position</b></td>
+	</tr>
 
 <c:forEach var="employer" items="${employers}">
 	<tr>
@@ -22,6 +30,7 @@
 	</tr>
 </c:forEach>
 </table>
+<br>
 <a href="index.jsp">return</a>
 </body>
 </html>
