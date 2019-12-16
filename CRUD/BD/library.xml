@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<library xmlns="http://www.cothn.org/library/">
+    <Comics>
+        <id>1</id>
+        <authid>407745998</authid>
+        <title>Santa Book</title>
+        <publhouseid>0</publhouseid>
+        <pagecount>100</pagecount>
+        <description>HoHOho</description>
+        <drawing>Pen</drawing>
+        <universe>DC</universe>
+    </Comics>
+    <Article>
+        <id>2</id>
+        <authid>0</authid>
+        <title>Progg</title>
+        <publhouseid>0</publhouseid>
+        <pagecount>666</pagecount>
+        <description>progggg</description>
+        <topic>topic</topic>
+        <subject>Math</subject>
+    </Article>
+    <Article>
+        <id>3</id>
+        <authid>0</authid>
+        <title>Proggi</title>
+        <publhouseid>0</publhouseid>
+        <pagecount>666</pagecount>
+        <description>p</description>
+        <topic>top</topic>
+        <subject>Maths</subject>
+    </Article>
+    <Book>
+        <id>7</id>
+        <authid>0</authid>
+        <title>Santa Book</title>
+        <publhouseid>0</publhouseid>
+        <pagecount>100</pagecount>
+        <description>HoHOho</description>
+        <genre>Siaens</genre>
+        <ISBN>1234-1322-1234-1234</ISBN>
+    </Book>
+
+</library>

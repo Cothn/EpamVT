@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.cothn.org/publhouses/"
+           xmlns:pub="http://www.cothn.org/publhouses/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="id" type="xs:integer"/>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="address" type="xs:string"/>
+  <xs:element name="phone" type="xs:string"/>
+  <xs:element name="foundationdate" type="xs:string"/>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="Publhouse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pub:id"/>
+        <xs:element ref="pub:title"/>
+        <xs:element ref="pub:address"/>
+        <xs:element ref="pub:phone"/>
+        <xs:element ref="pub:foundationdate"/>
+        <xs:element ref="pub:description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="publhouses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="pub:Publhouse" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
